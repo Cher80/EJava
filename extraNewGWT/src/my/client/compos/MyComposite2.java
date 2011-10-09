@@ -16,6 +16,7 @@ public class MyComposite2 extends Composite implements IMyCompositeEventHandler 
 		
 		myButt1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
+				MyButt1.setText("FromPCCliknul!");
 				//myButt1.setText("Cliknul!");
 				//myButt1.setText("OereCliknul!");
 				//myButt1.setText("VfrOereCliknul!");
