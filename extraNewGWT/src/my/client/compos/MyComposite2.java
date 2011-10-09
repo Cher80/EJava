@@ -20,7 +20,9 @@ public class MyComposite2 extends Composite implements IMyCompositeEventHandler 
 				//myButt1.setText("Cliknul!");
 				//myButt1.setText("OereCliknul!");
 				//myButt1.setText("VfrOereCliknul!");
-				myButt1.setText("BiBiVfrOereCliknul!");
+				//myButt1.setText("BiBiVfrOereCliknul!");
+				myButt1.setText("MacBiBiVfrOereCliknul!");
+				
 				//ComposedEvent myEvent = new ComposedEvent(654);
 				//myEvent.dispatch(new MyCompositeEventHandler());
 			}
