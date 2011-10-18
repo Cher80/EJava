@@ -14,6 +14,8 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -46,6 +48,7 @@ public class ExtraNewGWT implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
+		final SimpleEventBus myEventBus = new SimpleEventBus();
 		final Button sendButton = new Button("Send");
 		final TextBox nameField = new TextBox();
 		nameField.setText("GWT User");
@@ -57,10 +60,10 @@ public class ExtraNewGWT implements EntryPoint {
 		myLabel.setText("Olo андрю!");
 		
 		FlowPanel panel = new FlowPanel();
-		MyComposite myCopm = new MyComposite();
-		MyComposite2 myCopm2 = new MyComposite2();
+		MyComposite myCopm = new MyComposite(myEventBus);
+		MyComposite2 myCopm2 = new MyComposite2(myEventBus);
 		
-		myCopm.addMessageReceivedEventHandler(myCopm2);
+		//myCopm.addMessageReceivedEventHandler(myCopm2);
 
 		//myCopm.addHandler(ComposedEvent.TYPE, new MyCompositeEventHandler());
 		//myCopm.add

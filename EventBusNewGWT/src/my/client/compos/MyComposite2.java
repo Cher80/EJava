@@ -2,17 +2,20 @@ package my.client.compos;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class MyComposite2 extends Composite implements IMyCompositeEventHandler {
+public class MyComposite2 extends Composite {
 	
 	private VerticalPanel panel = new VerticalPanel();
 	private Button myButt1 = new Button("OloloButt2");
 	
-	public MyComposite2() {
+	public MyComposite2(SimpleEventBus myEventBus) {
 		panel.add(myButt1);
+		
+		myEventBus.addHandler(ComposedEvent.TYPE, new MyCompositeEventHandler2());
 		
 		myButt1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -32,12 +35,13 @@ public class MyComposite2 extends Composite implements IMyCompositeEventHandler 
 		initWidget(panel);
 	}
 
+	/*
 	@Override
 	public void onComposed(ComposedEvent event) {
 		// TODO Auto-generated method stub
 		myButt1.setText("BlyaMessaga!");
 		//System.out.println(event.myVar);
 	}
-	
+	*/
 	
 }

@@ -6,6 +6,7 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -16,7 +17,7 @@ public class MyComposite extends Composite implements HasHandlers{
 	private Button myButt1 = new Button("OloloButt");
 	private HandlerManager handlerManager;
 	
-	public MyComposite() {
+	public MyComposite(final SimpleEventBus myEventBus) {
 		handlerManager = new HandlerManager(this);
 		panel.add(myButt1);
 		
@@ -25,8 +26,8 @@ public class MyComposite extends Composite implements HasHandlers{
 		myButt1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				myButt1.setText("Cliknul!");
-				ComposedEvent myEvent = new ComposedEvent(654);
-				fireEvent(myEvent);
+				ComposedEvent myEvent = new ComposedEvent(154);
+				myEventBus.fireEvent(myEvent);
 				//myEvent.dispatch(new MyCompositeEventHandler());
 				//myEvent.dispatch();
 			}
@@ -39,6 +40,7 @@ public class MyComposite extends Composite implements HasHandlers{
     public void fireEvent(GwtEvent<?> event) {
         handlerManager.fireEvent(event);
     }
+	
 	
 	public HandlerRegistration addMessageReceivedEventHandler(
 			IMyCompositeEventHandler handler) {
