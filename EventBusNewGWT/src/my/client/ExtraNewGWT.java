@@ -49,6 +49,7 @@ public class ExtraNewGWT implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		final SimpleEventBus myEventBus = new SimpleEventBus();
+		myEventBus.addHandler(ComposedEvent.TYPE, new MyCompositeEventHandler2());
 		final Button sendButton = new Button("Send");
 		final TextBox nameField = new TextBox();
 		nameField.setText("GWT User");
