@@ -7,7 +7,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class MyComposite2 extends Composite {
+public class MyComposite2 extends Composite implements IMyCompositeEventHandler{
 	
 	private VerticalPanel panel = new VerticalPanel();
 	private Button myButt1 = new Button("OloloButt2");
@@ -15,7 +15,8 @@ public class MyComposite2 extends Composite {
 	public MyComposite2(SimpleEventBus myEventBus) {
 		panel.add(myButt1);
 		
-		myEventBus.addHandler(ComposedEvent.TYPE, new MyCompositeEventHandler2());
+		//myEventBus.addHandler(ComposedEvent.TYPE, new MyCompositeEventHandler2());
+		myEventBus.addHandler(ComposedEvent.TYPE, this);
 		
 		myButt1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -33,6 +34,12 @@ public class MyComposite2 extends Composite {
 		});
 		
 		initWidget(panel);
+	}
+
+	@Override
+	public void onComposed(ComposedEvent event) {
+		// TODO Auto-generated method stub
+		System.out.println(event.myVar + 8 + "implemented");
 	}
 
 	/*
