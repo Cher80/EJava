@@ -1,5 +1,7 @@
 package my.client.compos;
 
+import my.client.eventBus.SimpleEventBusSingleton;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -12,11 +14,11 @@ public class MyComposite2 extends Composite implements IMyCompositeEventHandler{
 	private VerticalPanel panel = new VerticalPanel();
 	private Button myButt1 = new Button("OloloButt2");
 	
-	public MyComposite2(SimpleEventBus myEventBus) {
+	public MyComposite2() {
 		panel.add(myButt1);
 		
 		//myEventBus.addHandler(ComposedEvent.TYPE, new MyCompositeEventHandler2());
-		myEventBus.addHandler(ComposedEvent.TYPE, this);
+		SimpleEventBusSingleton.getInstance().addHandler(ComposedEvent.TYPE, this);
 		
 		myButt1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -39,7 +41,7 @@ public class MyComposite2 extends Composite implements IMyCompositeEventHandler{
 	@Override
 	public void onComposed(ComposedEvent event) {
 		// TODO Auto-generated method stub
-		System.out.println(event.myVar + 8 + "implemented");
+		System.out.println(event.myVar + 8 + "implemented handler in Composed2");
 	}
 
 	/*

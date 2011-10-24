@@ -48,8 +48,8 @@ public class ExtraNewGWT implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		final SimpleEventBus myEventBus = new SimpleEventBus();
-		myEventBus.addHandler(ComposedEvent.TYPE, new MyCompositeEventHandler2());
+		//final SimpleEventBus myEventBus = new SimpleEventBus();
+		//myEventBus.addHandler(ComposedEvent.TYPE, new MyCompositeEventHandler2());
 		final Button sendButton = new Button("Send");
 		final TextBox nameField = new TextBox();
 		nameField.setText("GWT User");
@@ -61,8 +61,8 @@ public class ExtraNewGWT implements EntryPoint {
 		myLabel.setText("Olo андрю!");
 		
 		FlowPanel panel = new FlowPanel();
-		MyComposite myCopm = new MyComposite(myEventBus);
-		MyComposite2 myCopm2 = new MyComposite2(myEventBus);
+		MyComposite myCopm = new MyComposite();
+		MyComposite2 myCopm2 = new MyComposite2();
 		
 		//myCopm.addMessageReceivedEventHandler(myCopm2);
 

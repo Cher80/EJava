@@ -1,5 +1,7 @@
 package my.client.compos;
 
+import my.client.eventBus.SimpleEventBusSingleton;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.GwtEvent;
@@ -17,7 +19,7 @@ public class MyComposite extends Composite {
 	private Button myButt1 = new Button("OloloButt");
 	//private HandlerManager handlerManager;
 	
-	public MyComposite(final SimpleEventBus myEventBus) {
+	public MyComposite() {
 		//handlerManager = new HandlerManager(this);
 		panel.add(myButt1);
 		
@@ -27,7 +29,7 @@ public class MyComposite extends Composite {
 			public void onClick(ClickEvent event) {
 				myButt1.setText("Cliknul!");
 				ComposedEvent myEvent = new ComposedEvent(154);
-				myEventBus.fireEvent(myEvent);
+				SimpleEventBusSingleton.getInstance().fireEvent(myEvent);
 				//myEvent.dispatch(new MyCompositeEventHandler());
 				//myEvent.dispatch();
 			}
