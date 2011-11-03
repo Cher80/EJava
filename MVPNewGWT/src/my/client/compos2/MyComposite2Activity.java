@@ -15,7 +15,7 @@ public class MyComposite2Activity extends AbstractActivity implements IMyComposi
     private String name;
     
     public MyComposite2Activity(MyComposite2Place place, ClientFactory clientFactory) {
-        this.name = place.getMyComposite2Name();
+        this.name = place.getPlaceName();
         this.clientFactory = clientFactory;
     }
 	
@@ -29,6 +29,13 @@ public class MyComposite2Activity extends AbstractActivity implements IMyComposi
 
 	}
 
+	@Override
+	public void goToCompos1New() {
+		System.out.println("MyComposite2Activity action goToCompos1 ");
+		clientFactory.getPlaceController().goTo(new MyCompositePlace("composplace1"));
+
+	}
+	
 	@Override
 	public void goToCompos1(Place place) {
 		// TODO Auto-generated method stub

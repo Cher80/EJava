@@ -33,7 +33,7 @@ public class MyComposite2View extends Composite implements IMyComposite2View {
 				//myButt1.setText("BiBiVfrOereCliknul!");
 				//myButt1.setText("MacBiBiVfrOereCliknul!");
 				myButt1.setText("MacMacBiBiVfrOereCliknul!");
-				
+				presenter.goToCompos1New();
 				//ComposedEvent myEvent = new ComposedEvent(654);
 				//myEvent.dispatch(new MyCompositeEventHandler());
 			}
@@ -46,7 +46,7 @@ public class MyComposite2View extends Composite implements IMyComposite2View {
 	public void setName(String composName) {
 		// TODO Auto-generated method stub
 		this.name = composName;
-		myButt1.setText("name!");
+		myButt1.setText("name2!");
 
 	}
 

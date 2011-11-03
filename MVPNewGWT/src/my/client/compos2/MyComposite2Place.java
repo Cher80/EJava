@@ -7,20 +7,20 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class MyComposite2Place extends Place {
 	
-	private String myComposite2Name;
+	private String placeName;
 
     public MyComposite2Place(String token) {
-        this.myComposite2Name = token;
+        this.placeName = token;
     }
 
-    public String getMyComposite2Name() {
-        return myComposite2Name;
+    public String getPlaceName() {
+        return placeName;
     }
 
     public static class Tokenizer implements PlaceTokenizer<MyComposite2Place> {
         @Override
         public String getToken(MyComposite2Place place) {
-            return place.getMyComposite2Name();
+            return place.getPlaceName();
         }
 
         @Override

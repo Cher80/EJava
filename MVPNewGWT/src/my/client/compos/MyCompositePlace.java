@@ -5,20 +5,20 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class MyCompositePlace extends Place {
 	
-	private String myCompositeName;
+	private String placeName;
 
     public MyCompositePlace(String token) {
-        this.myCompositeName = token;
+        this.placeName = token;
     }
 
-    public String getMyCompositeName() {
-        return myCompositeName;
+    public String getPlaceName() {
+        return placeName;
     }
 
     public static class Tokenizer implements PlaceTokenizer<MyCompositePlace> {
         @Override
         public String getToken(MyCompositePlace place) {
-            return place.getMyCompositeName();
+            return place.getPlaceName();
         }
 
         @Override

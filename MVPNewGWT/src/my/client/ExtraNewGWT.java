@@ -41,7 +41,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  */
 public class ExtraNewGWT implements EntryPoint {
 	
-	private Place defaultPlace = new MyCompositePlace("composplace!");
+	private Place defaultPlace = new MyCompositePlace("composplace1!");
     private SimplePanel appWidget = new SimplePanel();
 
 

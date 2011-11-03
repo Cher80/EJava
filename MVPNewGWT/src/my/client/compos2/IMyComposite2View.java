@@ -11,6 +11,7 @@ public interface IMyComposite2View extends IsWidget {
     void setPresenter(Presenter presenter);
 	
 	public interface Presenter {
+		public void goToCompos1New();
         void goToCompos1(Place place);
         void someStaff();
     }
