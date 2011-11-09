@@ -39,7 +39,7 @@ public class MyCompositeActivity extends AbstractActivity implements
 	@Override
 	public void goToCompos2New() {
 		System.out.println("MyCompositeActivity action goToCompos2 ");
-		clientFactory.getPlaceController().goTo(new MyComposite2Place("composplace2"));
+		clientFactory.getPlaceController().goTo(new MyComposite2Place("composplace2/234"));
 
 	}
 	

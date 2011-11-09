@@ -13,9 +13,21 @@ public class MyComposite2Activity extends AbstractActivity implements IMyComposi
 
 	private ClientFactory clientFactory;
     private String name;
+    private String forumNumber;
     
     public MyComposite2Activity(MyComposite2Place place, ClientFactory clientFactory) {
         this.name = place.getPlaceName();
+        
+        /* delimiter */
+        String delimiter = "/";
+        /* given string will be split by the argument delimiter provided. */
+        String[] temp;
+        temp = name.split(delimiter);
+        /* print substrings */
+        for(int i =0; i < temp.length ; i++)
+        System.out.println("MyComposite2Activity split token = " + temp[i]);
+        this.forumNumber = temp[1];
+        
         this.clientFactory = clientFactory;
     }
 	
@@ -25,6 +37,7 @@ public class MyComposite2Activity extends AbstractActivity implements IMyComposi
 		MyComposite2View myComposed2View = new MyComposite2View();
 		myComposed2View.setName("MyCompositeView");
 		myComposed2View.setPresenter(this);
+		myComposed2View.setButtonName(this.forumNumber);
 		panel.setWidget(myComposed2View.asWidget());
 
 	}

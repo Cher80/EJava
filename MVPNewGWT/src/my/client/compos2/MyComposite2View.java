@@ -54,6 +54,12 @@ public class MyComposite2View extends Composite implements IMyComposite2View {
 	public void setPresenter(Presenter presenter) {
 		// TODO Auto-generated method stub
 		this.presenter = presenter;
+		//this.forumNumber
+	}
+
+	public void setButtonName(String forumNumber) {
+		myButt1.setText("name2!forumNumber + " + forumNumber);
+		
 	}
 
 }

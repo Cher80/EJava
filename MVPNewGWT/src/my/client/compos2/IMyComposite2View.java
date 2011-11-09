@@ -9,6 +9,7 @@ public interface IMyComposite2View extends IsWidget {
 	
 	void setName(String composName);
     void setPresenter(Presenter presenter);
+    void setButtonName(String forumNumber);
 	
 	public interface Presenter {
 		public void goToCompos1New();
