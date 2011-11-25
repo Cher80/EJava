@@ -15,6 +15,7 @@ public class MyCompositePlace extends Place {
         return placeName;
     }
 
+    
     public static class Tokenizer implements PlaceTokenizer<MyCompositePlace> {
         @Override
         public String getToken(MyCompositePlace place) {

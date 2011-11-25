@@ -13,6 +13,7 @@ public interface IMyCompositeView extends IsWidget {
         void someStaff();
 		void doEditReload();
 		void doEditHistory();
+		void doGoMenu();
 		
     }
 

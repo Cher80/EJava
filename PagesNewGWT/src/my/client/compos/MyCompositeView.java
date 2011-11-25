@@ -14,6 +14,7 @@ public class MyCompositeView extends Composite implements IMyCompositeView {
 	private Button myButt1 = new Button("OloloButt");
 	private Button myEditReload = new Button("EditReload");
 	private Button myEditHistory = new Button("EditHistory");
+	private Button myGoMenu = new Button("myGoMenu");
 	private Presenter presenter;
     private String name;
 
@@ -24,6 +25,15 @@ public class MyCompositeView extends Composite implements IMyCompositeView {
 		panel.add(myButt1);
 		panel.add(myEditReload);
 		panel.add(myEditHistory);
+		panel.add(myGoMenu);
+		
+		myGoMenu.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				System.out.println("MyCompositeView myGoMenu.onClick");
+				presenter.doGoMenu();
+
+			}
+		});
 		
 		
 		myEditReload.addClickHandler(new ClickHandler() {

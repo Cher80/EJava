@@ -10,6 +10,8 @@ import my.client.compos.MyCompositePlace;
 import my.client.compos2.MyComposite2;
 import my.client.compos.MyCompositeEventHandler;
 import my.client.compos.MyCompositeEventHandler2;
+import my.client.menu.MenuActivityMapper;
+import my.client.menuTop.MenuTop;
 import my.shared.FieldVerifier;
 
 import com.google.gwt.activity.shared.ActivityManager;
@@ -43,17 +45,30 @@ public class ExtraNewGWT implements EntryPoint {
 	
 	private Place defaultPlace = new MyCompositePlace("composplace1!");
     private SimplePanel appWidget = new SimplePanel();
+    private SimplePanel menuWidget = new SimplePanel();
+    private SimplePanel menuTopPanel = new SimplePanel();
 
 
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
+		RootPanel.get().add(menuTopPanel);
+		menuTopPanel.add(new MenuTop());
+		
+		 RootPanel.get().add(appWidget);
+	        RootPanel.get().add(menuWidget);
 		
 		ClientFactory clientFactory = GWT.create(my.client.common.ClientFactory.class);
         EventBus eventBus = clientFactory.getEventBus();
         PlaceController placeController = clientFactory.getPlaceController();
 
+        // Start ActivityManager for the main widget with our ActivityMapper Menu!
+        ActivityMapper menuActivityMapper = new MenuActivityMapper(clientFactory);
+        ActivityManager menuActivityManager = new ActivityManager(menuActivityMapper, eventBus);
+        menuActivityManager.setDisplay(menuWidget);
+        
+        
         // Start ActivityManager for the main widget with our ActivityMapper
         ActivityMapper activityMapper = new AppActivityMapper(clientFactory);
         ActivityManager activityManager = new ActivityManager(activityMapper, eventBus);
@@ -64,7 +79,7 @@ public class ExtraNewGWT implements EntryPoint {
         PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
         historyHandler.register(placeController, eventBus, defaultPlace);
 
-        RootPanel.get().add(appWidget);
+       
         // Goes to the place represented on URL else default place
         historyHandler.handleCurrentHistory();
 

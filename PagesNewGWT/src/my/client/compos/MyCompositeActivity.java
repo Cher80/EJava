@@ -2,6 +2,7 @@ package my.client.compos;
 
 import my.client.common.ClientFactory;
 import my.client.compos2.MyComposite2Place;
+import my.client.menu.MenuPlace;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
@@ -77,6 +78,13 @@ public class MyCompositeActivity extends AbstractActivity implements
 		//History.newItem(name+ "/editHistory", false);
 		History.newItem(History.getToken() + "/editHistory", false);
 		
+	}
+
+
+	@Override
+	public void doGoMenu() {
+		// TODO Auto-generated method stub
+		clientFactory.getPlaceController().goTo(new MenuPlace(""));
 	}
 
 }
