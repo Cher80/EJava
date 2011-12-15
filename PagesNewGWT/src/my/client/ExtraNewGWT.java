@@ -48,7 +48,7 @@ public class ExtraNewGWT implements EntryPoint {
     private SimplePanel menuWidget = new SimplePanel();
     private SimplePanel menuTopPanel = new SimplePanel();
 
-
+    //Ololo
 	/**
 	 * This is the entry point method.
 	 */
