@@ -10,8 +10,8 @@ import my.client.compos.MyCompositePlace;
 import my.client.compos2.MyComposite2;
 import my.client.compos.MyCompositeEventHandler;
 import my.client.compos.MyCompositeEventHandler2;
-import my.client.menu.MenuActivityMapper;
-import my.client.menuTop.MenuTop;
+//import my.client.menu.MenuActivityMapper;
+//import my.client.menuTop.MenuTop;
 import my.shared.FieldVerifier;
 
 import com.google.gwt.activity.shared.ActivityManager;
@@ -54,7 +54,7 @@ public class ExtraNewGWT implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		RootPanel.get().add(menuTopPanel);
-		menuTopPanel.add(new MenuTop());
+		//menuTopPanel.add(new MenuTop());
 		
 		 RootPanel.get().add(appWidget);
 	        RootPanel.get().add(menuWidget);
@@ -64,9 +64,9 @@ public class ExtraNewGWT implements EntryPoint {
         PlaceController placeController = clientFactory.getPlaceController();
 
         // Start ActivityManager for the main widget with our ActivityMapper Menu!
-        ActivityMapper menuActivityMapper = new MenuActivityMapper(clientFactory);
-        ActivityManager menuActivityManager = new ActivityManager(menuActivityMapper, eventBus);
-        menuActivityManager.setDisplay(menuWidget);
+       // ActivityMapper menuActivityMapper = new MenuActivityMapper(clientFactory);
+       // ActivityManager menuActivityManager = new ActivityManager(menuActivityMapper, eventBus);
+       // menuActivityManager.setDisplay(menuWidget);
         
         
         // Start ActivityManager for the main widget with our ActivityMapper

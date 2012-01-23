@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='extranewgwt'>
   <!-- Inherit the core Web Toolkit stuff.                        -->
+
   <inherits name='com.google.gwt.user.User'/>
-  <inherits name='com.google.gwt.activity.Activity' />
+  <inherits name='com.google.gwt.activity.Activity'/>
+
+
+
+ 
+  
+  
+  
+  
  
 
   <!-- Inherit the default GWT style sheet.  You can change       -->
