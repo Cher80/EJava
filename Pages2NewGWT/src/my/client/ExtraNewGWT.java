@@ -4,6 +4,7 @@ package my.client;
 import my.client.common.AppActivityMapper;
 import my.client.common.AppPlaceHistoryMapper;
 import my.client.common.ClientFactory;
+import my.client.common.PanelForView;
 import my.client.compos.ComposedEvent;
 import my.client.compos.MyComposite;
 import my.client.compos.MyCompositePlace;
@@ -43,7 +44,9 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class ExtraNewGWT implements EntryPoint {
 	
 	private Place defaultPlace = new MyCompositePlace("composplace1!");
+	private PanelForView appWidNew = new PanelForView();
     private SimplePanel appWidget = new SimplePanel();
+    private SimplePanel appWidgetOld = new SimplePanel();
     private SimplePanel menuWidget = new SimplePanel();
 
 
@@ -56,6 +59,7 @@ public class ExtraNewGWT implements EntryPoint {
 		
 		RootPanel.get().add(appWidget);
 		RootPanel.get().add(menuWidget);
+		RootPanel.get().add(appWidNew);
 		
 		TopmenuView myTopmenuView = new TopmenuView();
 		menuWidget.add(myTopmenuView);
@@ -67,7 +71,7 @@ public class ExtraNewGWT implements EntryPoint {
         // Start ActivityManager for the main widget with our ActivityMapper
         ActivityMapper activityMapper = new AppActivityMapper(clientFactory);
         ActivityManager activityManager = new ActivityManager(activityMapper, eventBus);
-        activityManager.setDisplay(appWidget);
+        activityManager.setDisplay(appWidNew);
 
         // Start PlaceHistoryHandler with our PlaceHistoryMapper
         AppPlaceHistoryMapper historyMapper= GWT.create(AppPlaceHistoryMapper.class);
