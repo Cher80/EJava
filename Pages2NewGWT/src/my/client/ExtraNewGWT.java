@@ -4,6 +4,7 @@ package my.client;
 import my.client.common.AppActivityMapper;
 import my.client.common.AppPlaceHistoryMapper;
 import my.client.common.ClientFactory;
+import my.client.common.MySimpleLayoutPanel;
 import my.client.common.PanelForView;
 import my.client.compos.ComposedEvent;
 import my.client.compos.MyComposite;
@@ -29,11 +30,14 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.RootPanel;
+//import com.google.gwt.user.client.ui.SimpleLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -48,6 +52,9 @@ public class ExtraNewGWT implements EntryPoint {
     private SimplePanel appWidget = new SimplePanel();
     private SimplePanel appWidgetOld = new SimplePanel();
     private SimplePanel menuWidget = new SimplePanel();
+    
+    private MySimpleLayoutPanel appWidNewNew = new MySimpleLayoutPanel();
+    
 
 
 	/**
@@ -56,10 +63,14 @@ public class ExtraNewGWT implements EntryPoint {
 	public void onModuleLoad() {
 		
 		
+		RootLayoutPanel.get().add(appWidNewNew);
+		//RootPanel.get().add(appWidget);
+		//RootPanel.get().add(menuWidget);
+		//RootPanel.get().add(appWidNew);
 		
-		RootPanel.get().add(appWidget);
-		RootPanel.get().add(menuWidget);
-		RootPanel.get().add(appWidNew);
+		
+		Button myButt1 = new Button("appWidNewNew");
+		//appWidNewNew.add(myButt1);
 		
 		TopmenuView myTopmenuView = new TopmenuView();
 		menuWidget.add(myTopmenuView);
@@ -71,7 +82,7 @@ public class ExtraNewGWT implements EntryPoint {
         // Start ActivityManager for the main widget with our ActivityMapper
         ActivityMapper activityMapper = new AppActivityMapper(clientFactory);
         ActivityManager activityManager = new ActivityManager(activityMapper, eventBus);
-        activityManager.setDisplay(appWidNew);
+        activityManager.setDisplay(appWidNewNew);
 
         // Start PlaceHistoryHandler with our PlaceHistoryMapper
         AppPlaceHistoryMapper historyMapper= GWT.create(AppPlaceHistoryMapper.class);
