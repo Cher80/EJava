@@ -4,6 +4,7 @@ package my.client;
 import my.client.common.AppActivityMapper;
 import my.client.common.AppPlaceHistoryMapper;
 import my.client.common.ClientFactory;
+import my.client.common.MyFlowPanel;
 import my.client.common.MySimpleLayoutPanel;
 import my.client.common.PanelForView;
 import my.client.compos.ComposedEvent;
@@ -53,17 +54,24 @@ public class ExtraNewGWT implements EntryPoint {
     private SimplePanel appWidgetOld = new SimplePanel();
     private SimplePanel menuWidget = new SimplePanel();
     
-    private MySimpleLayoutPanel appWidNewNew = new MySimpleLayoutPanel();
+    //private MySimpleLayoutPanel appWidNewNew = new MySimpleLayoutPanel();
+    private MyFlowPanel appWidNewNew = new MyFlowPanel();
+    private MyFlowPanel container = new MyFlowPanel();
     
-
 
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
+		container.getElement().getStyle().setProperty("width", "300px");
+		container.getElement().getStyle().setProperty("overflow", "scroll");
+		container.getElement().getStyle().setProperty("border", "1px solid green");
+		appWidNewNew.getElement().getStyle().setProperty("width", "1300px");
 		
+		//appWidNewNew.getElement().getStyle().setProperty("display", "inline-block");
+		RootLayoutPanel.get().add(container);
+		container.add(appWidNewNew);
 		
-		RootLayoutPanel.get().add(appWidNewNew);
 		//RootPanel.get().add(appWidget);
 		//RootPanel.get().add(menuWidget);
 		//RootPanel.get().add(appWidNew);

@@ -8,17 +8,20 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class MyComposite2View extends Composite implements IMyComposite2View {
 
 	
-	private VerticalPanel panel = new VerticalPanel();
+	private FlowPanel panel = new FlowPanel();
 	private Button myButt1 = new Button("OloloButt2");
 	private Presenter presenter;
     private String name;
 	
 	public MyComposite2View() {
+		panel.getElement().getStyle().setProperty("float", "left");
+		panel.getElement().getStyle().setProperty("border", "1px solid red");
 		panel.add(myButt1);
 		
 		//myEventBus.addHandler(ComposedEvent.TYPE, new MyCompositeEventHandler2());

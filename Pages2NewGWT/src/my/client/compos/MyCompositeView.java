@@ -6,11 +6,12 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class MyCompositeView extends Composite implements IMyCompositeView {
 
-	private VerticalPanel panel = new VerticalPanel();
+	private FlowPanel panel = new FlowPanel();
 	private Button myButt1 = new Button("OloloButt");
 	private Presenter presenter;
     private String name;
@@ -18,6 +19,9 @@ public class MyCompositeView extends Composite implements IMyCompositeView {
 	//private HandlerManager handlerManager;
 	
 	public MyCompositeView() {
+		panel.getElement().getStyle().setProperty("float", "left");
+		panel.getElement().getStyle().setProperty("border", "1px solid red");
+		
 		//handlerManager = new HandlerManager(this);
 		panel.add(myButt1);
 		
