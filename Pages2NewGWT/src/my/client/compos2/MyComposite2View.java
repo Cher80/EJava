@@ -20,7 +20,7 @@ public class MyComposite2View extends Composite implements IMyComposite2View {
     private String name;
 	
 	public MyComposite2View() {
-		panel.getElement().getStyle().setProperty("float", "left");
+		panel.getElement().getStyle().setProperty("cssFloat", "left");
 		panel.getElement().getStyle().setProperty("border", "1px solid red");
 		panel.add(myButt1);
 		

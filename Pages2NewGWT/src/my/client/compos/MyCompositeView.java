@@ -20,7 +20,7 @@ public class MyCompositeView extends Composite implements IMyCompositeView {
 	
 	public MyCompositeView() {
 		panel.getElement().getStyle().setProperty("float", "left");
-		panel.getElement().getStyle().setProperty("border", "1px solid red");
+		//panel.getElement().getStyle().setProperty("border", "1px solid red");
 		
 		//handlerManager = new HandlerManager(this);
 		panel.add(myButt1);
@@ -32,6 +32,7 @@ public class MyCompositeView extends Composite implements IMyCompositeView {
 				System.out.println("MyCompositeView myButt1.onClick");
 				presenter.someStaff();
 				presenter.goToCompos2New();
+				
 				//myButt1.setText("Cliknul!");
 				//ComposedEvent myEvent = new ComposedEvent(154);
 				//SimpleEventBusSingleton.getInstance().fireEvent(myEvent);
@@ -40,6 +41,11 @@ public class MyCompositeView extends Composite implements IMyCompositeView {
 		});
 		
 		initWidget(panel);
+		panel.getElement().getStyle().setProperty("cssFloat", "left");
+		panel.getElement().getStyle().setProperty("border", "1px solid red");
+		//panel.getElement().getStyle().setProperty("left", "130px");
+		//panel.getElement().getStyle().setFloat(); 
+
 	}
 	
 	
