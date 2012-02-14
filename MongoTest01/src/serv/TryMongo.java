@@ -4,10 +4,13 @@ import java.lang.reflect.Array;
 import java.net.UnknownHostException;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
+
+import javax.print.Doc;
 
 import com.mongodb.Mongo;
 import com.mongodb.DB;
@@ -55,48 +58,108 @@ public class TryMongo {
         }
 		*/
 		
-		DBCollection coll = db.getCollection("test");
+		
+		
+
+		
+		/*
+		for (int i=3;i<100;i++) {
+			System.out.println(i);
+			BasicDBObject docin = new BasicDBObject();
+			docin.put("cid", 999);
+			docin.put("content", "tuta");
+			
+	        
+	        coll.update(new BasicDBObject().append("page_id", 222), 
+	        		//new BasicDBObject().append("page_id", 222),
+	        		new BasicDBObject().append("$push", new BasicDBObject().append("comments", new BasicDBObject().append("cont", "fff"))),
+	        		true, 
+	        		false);
+
+		} */
+		
+
+		
+		
+		
+
+	DBCollection coll = db.getCollection("testColl");
+		
 		Date myDate1 = new Date();
 		Timestamp timeStampDate1 = new Timestamp(myDate1.getTime());
 		System.out.println(timeStampDate1);
 		BasicDBObject query = new BasicDBObject();
 		
-		// cur;
-		//Array curLoaded = new Array[];
 		List obj;
-		for (int i=100;i<110;i++) {
-			//System.out.println(i);
-			query.clear();
+		
+		for (int i=1;i<3;i++) {
 			
-
-			query.put("parent", i);
-			//Pattern john = Pattern.compile("^sub13", Pattern.CASE_INSENSITIVE);
-			//BasicDBObject query = new BasicDBObject("parent", john);
-			//query.put("page", john);
-        
-			//collection.find( query ).skip( 1000 ).limit( 100 )
-			//DBCursor cur = coll.find(query);
-			obj = coll.find(query).toArray();
-			System.out.println(obj);
-			/*
-			while(cur.hasNext()) {
-				//System.out.println(cur.next());
-				cur.next();
-			}
-			*/
+			BasicDBObject queryup = new BasicDBObject();
+			queryup.append("page_id", i);
 			
-		}
+			BasicDBObject upd = new BasicDBObject();
+			upd.append("$push", new BasicDBObject().append("comments", new BasicDBObject().append("cont", "fff")));
+			
+			coll.update(
+					queryup,
+					upd,
+	        		true, 
+	        		false);
+		} 
+		
 		
 		Date myDate2 = new Date();
 		Timestamp timeStampDate2 = new Timestamp(myDate2.getTime());
 		System.out.println(timeStampDate2);
-		//System.out.println(myDate2);
-		//Timestamp timeStampDate3 = timeStampDate2 - timeStampDate1;
-		
-		//Timestamp st = new Timestamp(System.currentTimeMillis());
 		System.out.println(timeStampDate2.getTime()-timeStampDate1.getTime());
 		
 		
+		
+		
+		
+		//////////////////////////////////////////////////////
+
+		/*
+		DBCollection coll = db.getCollection("testColl");
+		
+		Date myDate1 = new Date();
+		Timestamp timeStampDate1 = new Timestamp(myDate1.getTime());
+		System.out.println(timeStampDate1);
+		BasicDBObject query = new BasicDBObject();
+		
+		List obj;
+		
+		for (int i=2;i<20;i++) {
+			BasicDBObject page = new BasicDBObject();
+			page.put("page_id", i);
+			
+			//ArrayList x = new ArrayList();
+			ArrayList comments = new ArrayList();
+			
+			BasicDBObject comment1 = new BasicDBObject();
+			comment1.append("cid", 1);
+			comment1.append("text", "Ololo1");
+			
+			BasicDBObject comment2 = new BasicDBObject();
+			comment2.append("cid", 2);
+			comment2.append("text", "Ololo2");
+			
+			comments.add(comment1);
+			comments.add(comment2);
+			
+			page.put("comments", comments);
+			//page.comments("page_id", i);
+			
+			coll.insert(page);
+		} 
+		
+		
+		Date myDate2 = new Date();
+		Timestamp timeStampDate2 = new Timestamp(myDate2.getTime());
+		System.out.println(timeStampDate2);
+		System.out.println(timeStampDate2.getTime()-timeStampDate1.getTime());
+		
+		*/
 		
 	}
 
