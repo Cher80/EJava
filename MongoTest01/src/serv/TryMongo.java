@@ -92,19 +92,31 @@ public class TryMongo {
 		
 		List obj;
 		
-		for (int i=1;i<3;i++) {
+		for (int i=1;i<2;i++) {
 			
-			BasicDBObject queryup = new BasicDBObject();
-			queryup.append("page_id", i);
 			
-			BasicDBObject upd = new BasicDBObject();
-			upd.append("$push", new BasicDBObject().append("comments", new BasicDBObject().append("cont", "fff")));
 			
-			coll.update(
+			for (int k=1;k<1000;k++) {
+				BasicDBObject queryup = new BasicDBObject();
+				queryup.append("page_id", i);
+				BasicDBObject upd = new BasicDBObject();
+				
+				//ArrayList comments = new ArrayList();
+				
+				BasicDBObject comment1 = new BasicDBObject();
+				comment1.append("cid", k);
+				comment1.append("text", "Ololo1");
+
+				//comments.add(comment1);
+				
+				upd.append("$push", new BasicDBObject().append("comments", comment1));
+			
+				coll.update(
 					queryup,
 					upd,
 	        		true, 
 	        		false);
+				}
 		} 
 		
 		
@@ -117,7 +129,7 @@ public class TryMongo {
 		
 		
 		
-		//////////////////////////////////////////////////////
+		///////////////////  Save  ///////////////////////////////////
 
 		/*
 		DBCollection coll = db.getCollection("testColl");
@@ -129,7 +141,7 @@ public class TryMongo {
 		
 		List obj;
 		
-		for (int i=2;i<20;i++) {
+		for (int i=20;i<100000;i++) {
 			BasicDBObject page = new BasicDBObject();
 			page.put("page_id", i);
 			
@@ -144,8 +156,13 @@ public class TryMongo {
 			comment2.append("cid", 2);
 			comment2.append("text", "Ololo2");
 			
+			BasicDBObject comment3 = new BasicDBObject();
+			comment3.append("cid", 3);
+			comment3.append("text", "Ololo3");
+			
 			comments.add(comment1);
 			comments.add(comment2);
+			comments.add(comment3);
 			
 			page.put("comments", comments);
 			//page.comments("page_id", i);
@@ -158,8 +175,8 @@ public class TryMongo {
 		Timestamp timeStampDate2 = new Timestamp(myDate2.getTime());
 		System.out.println(timeStampDate2);
 		System.out.println(timeStampDate2.getTime()-timeStampDate1.getTime());
-		
 		*/
+		
 		
 	}
 
