@@ -81,7 +81,9 @@ public class TryMongo {
 		//clearTestColl("testColl");
 		//doUpdateComments();
 		//doPopulateComments();
-		doUpdateInc();
+		//doUpdateInc();
+		//getFromArray();
+		doUpdateIncArray();
 	}
 	
 
@@ -99,6 +101,35 @@ public class TryMongo {
 		//db.createCollection(collName, BasicDBObjectBuilder.start().add("capped", false).add("size", 0).add("max", 0).get());
 	}
 
+	public static void getFromArray() {
+		
+		DBCollection coll = db.getCollection("testColl");
+		
+		Date myDate1 = new Date();
+		Timestamp timeStampDate1 = new Timestamp(myDate1.getTime());
+		System.out.println(timeStampDate1);
+		
+			
+			
+			BasicDBObject queryup = new BasicDBObject();
+			queryup.append("page_id", 2);
+			queryup.append("comments.cid", 3);
+			
+			DBCursor cur = coll.find(queryup);
+			
+			while(cur.hasNext()) {
+	            System.out.println(cur.next());
+	        }
+		
+		
+		Date myDate2 = new Date();
+		Timestamp timeStampDate2 = new Timestamp(myDate2.getTime());
+		System.out.println(timeStampDate2);
+		System.out.println(timeStampDate2.getTime()-timeStampDate1.getTime());
+	}
+
+	
+	
 	
 	
 	public static void doUpdateIncArray() {
@@ -117,8 +148,9 @@ public class TryMongo {
 			
 			BasicDBObject queryup = new BasicDBObject();
 			queryup.append("page_id", i);
+			queryup.append("comments.cid", 999);
 			
-			BasicDBObject inc = new BasicDBObject("$inc", new BasicDBObject("rating", 1));
+			BasicDBObject inc = new BasicDBObject("$inc", new BasicDBObject("comments.rating", 1));
 			
 			
 			coll.update(
