@@ -76,13 +76,13 @@ public class TryMongo {
 		
 
 		//doUpdateCommentsDocument();
-		doPopulateCommentsAsDocument();
+		//doPopulateCommentsAsDocument();
 		//createTestColl("testColl");
 		//clearTestColl("testColl");
 		//doUpdateComments();
 		//doPopulateComments();
 		//doUpdateInc();
-		//getFromArray();
+		getFromArray();
 		//doUpdateIncArray();
 	}
 	
@@ -113,7 +113,7 @@ public class TryMongo {
 			
 			BasicDBObject queryup = new BasicDBObject();
 			//queryup.append("page_id", 2);
-			queryup.append("comments.rating", 10);
+			queryup.append("comments.rating", 11);
 			
 			DBCursor cur = coll.find(queryup);
 			
@@ -143,17 +143,18 @@ public class TryMongo {
 		
 		//List obj;
 		
-		for (int i=25;i<26;i++) {
+		for (int i=1;i<100000;i++) {
 			
 			
 			BasicDBObject queryup = new BasicDBObject();
 			queryup.append("page_id", i);
-			queryup.append("comments.cid", 1);
+			queryup.append("comments.cid", 2);
 			
 			//Works!
 			//BasicDBObject inc = new BasicDBObject("$inc", new BasicDBObject("comments.0.rating", 1)); 
-				
-			BasicDBObject inc = new BasicDBObject("$inc", new BasicDBObject("comments.0.rating", 1));
+			//.update({"events.profile":10},{$set:{"events.$.handled":0}},false,true)	
+			//YES!!!
+			BasicDBObject inc = new BasicDBObject("$inc", new BasicDBObject("comments.$.rating", 1));
 			
 			coll.update(
 					queryup,
@@ -274,7 +275,7 @@ public class TryMongo {
 		
 		List obj;
 		
-		for (int i=2;i<100000;i++) {
+		for (int i=1;i<100000;i++) {
 			BasicDBObject page = new BasicDBObject();
 			page.put("page_id", i);
 			page.put("rating", 0);
@@ -294,7 +295,7 @@ public class TryMongo {
 			BasicDBObject comment3 = new BasicDBObject();
 			comment3.append("cid", 3);
 			comment3.append("text", "Ololo3");
-			comment3.append("rating", 0);
+			comment3.append("rating", 3);
 			
 			comments.add(comment1);
 			comments.add(comment2);
