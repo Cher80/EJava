@@ -75,8 +75,8 @@ public class TryMongo {
 		
 		
 
-		doUpdateCommentsDocument();
-		//doPopulateCommentsAsDocument();
+		//doUpdateCommentsDocument();
+		doPopulateCommentsAsDocument();
 		//createTestColl("testColl");
 		//clearTestColl("testColl");
 		//doUpdateComments();
@@ -112,8 +112,8 @@ public class TryMongo {
 			
 			
 			BasicDBObject queryup = new BasicDBObject();
-			queryup.append("page_id", 2);
-			queryup.append("comments.cid", 3);
+			//queryup.append("page_id", 2);
+			queryup.append("comments.rating", 10);
 			
 			DBCursor cur = coll.find(queryup);
 			
@@ -143,15 +143,17 @@ public class TryMongo {
 		
 		//List obj;
 		
-		for (int i=21;i<22;i++) {
+		for (int i=25;i<26;i++) {
 			
 			
 			BasicDBObject queryup = new BasicDBObject();
 			queryup.append("page_id", i);
-			queryup.append("comments.cid", 999);
+			queryup.append("comments.cid", 1);
 			
-			BasicDBObject inc = new BasicDBObject("$inc", new BasicDBObject("comments.rating", 1));
-			
+			//Works!
+			//BasicDBObject inc = new BasicDBObject("$inc", new BasicDBObject("comments.0.rating", 1)); 
+				
+			BasicDBObject inc = new BasicDBObject("$inc", new BasicDBObject("comments.0.rating", 1));
 			
 			coll.update(
 					queryup,
@@ -287,12 +289,12 @@ public class TryMongo {
 			BasicDBObject comment2 = new BasicDBObject();
 			comment2.append("cid", 2);
 			comment2.append("text", "Ololo2");
-			comment1.append("rating", 0);
+			comment2.append("rating", 0);
 			
 			BasicDBObject comment3 = new BasicDBObject();
 			comment3.append("cid", 3);
 			comment3.append("text", "Ololo3");
-			comment1.append("rating", 0);
+			comment3.append("rating", 0);
 			
 			comments.add(comment1);
 			comments.add(comment2);
@@ -336,26 +338,29 @@ public class TryMongo {
 			page.put("page_id", i);
 			page.put("rating", 0);
 			
-
+			BasicDBObject comments = new BasicDBObject();
+			
 			BasicDBObject comment1 = new BasicDBObject();
 			comment1.append("cid", 1);
 			comment1.append("text", "Ololo1");
 			comment1.append("rating", 0);
-
+			
 			BasicDBObject comment2 = new BasicDBObject();
 			comment2.append("cid", 2);
-			comment2.append("text", "Ololo2");
-			comment1.append("rating", 0);
-
+			comment2.append("text", "Ololo1");
+			comment2.append("rating", 0);
+			
 			BasicDBObject comment3 = new BasicDBObject();
 			comment3.append("cid", 3);
-			comment3.append("text", "Ololo3");
-			comment1.append("rating", 0);
+			comment3.append("text", "Ololo1");
+			comment3.append("rating", 3);
+			
 
-			page.put("c0001",comment1);
-			page.put("c0002",comment2);
-			page.put("c0003",comment3);
+			comments.put("comment",comment1);
+			comments.put("comment",comment2);
+			comments.put("comment",comment3);
 
+			page.put("comments", comments);
 //page.put("comments", comments);
 //page.comments("page_id", i);
 
