@@ -75,15 +75,15 @@ public class TryMongo {
 		
 		
 
-	
-		
+		doUpdateCommentsDocument();
+		//doPopulateCommentsAsDocument();
 		//createTestColl("testColl");
 		//clearTestColl("testColl");
 		//doUpdateComments();
 		//doPopulateComments();
 		//doUpdateInc();
 		//getFromArray();
-		doUpdateIncArray();
+		//doUpdateIncArray();
 	}
 	
 
@@ -313,4 +313,125 @@ public class TryMongo {
 
 	}
 
+	
+	
+	
+	
+///////////////////  Save  ///////////////////////////////////
+
+	
+	public static void doPopulateCommentsAsDocument() {
+
+		DBCollection coll = db.getCollection("testColl");
+
+		Date myDate1 = new Date();
+		Timestamp timeStampDate1 = new Timestamp(myDate1.getTime());
+		System.out.println(timeStampDate1);
+		BasicDBObject query = new BasicDBObject();
+
+		List obj;
+
+		for (int i=2;i<100000;i++) {
+			BasicDBObject page = new BasicDBObject();
+			page.put("page_id", i);
+			page.put("rating", 0);
+			
+
+			BasicDBObject comment1 = new BasicDBObject();
+			comment1.append("cid", 1);
+			comment1.append("text", "Ololo1");
+			comment1.append("rating", 0);
+
+			BasicDBObject comment2 = new BasicDBObject();
+			comment2.append("cid", 2);
+			comment2.append("text", "Ololo2");
+			comment1.append("rating", 0);
+
+			BasicDBObject comment3 = new BasicDBObject();
+			comment3.append("cid", 3);
+			comment3.append("text", "Ololo3");
+			comment1.append("rating", 0);
+
+			page.put("c0001",comment1);
+			page.put("c0002",comment2);
+			page.put("c0003",comment3);
+
+//page.put("comments", comments);
+//page.comments("page_id", i);
+
+			coll.insert(page);
+		} 
+
+
+		Date myDate2 = new Date();
+		Timestamp timeStampDate2 = new Timestamp(myDate2.getTime());
+		System.out.println(timeStampDate2);
+		System.out.println(timeStampDate2.getTime()-timeStampDate1.getTime());
+
+
+	}
+	
+	
+	
+	
+	
+	public static void doUpdateCommentsDocument() {
+		
+		DBCollection coll = db.getCollection("testColl");
+
+		Date myDate1 = new Date();
+		Timestamp timeStampDate1 = new Timestamp(myDate1.getTime());
+		System.out.println(timeStampDate1);
+		
+
+		List obj;
+
+		for (int i=2;i<3;i++) {
+			BasicDBObject query = new BasicDBObject();
+			query.put("page_id", i);
+			
+			
+			BasicDBObject comments = new BasicDBObject();
+			BasicDBObject comment1 = new BasicDBObject();
+			comment1.append("cid", 4);
+			comment1.append("text", "Ololo4");
+			comment1.append("rating", 0);
+
+			BasicDBObject comment2 = new BasicDBObject();
+			comment2.append("cid", 5);
+			comment2.append("text", "Ololo5");
+			comment2.append("rating", 0);
+
+			BasicDBObject comment3 = new BasicDBObject();
+			comment3.append("cid", 6);
+			comment3.append("text", "Ololo6");
+			comment3.append("rating", 0);
+
+			comments.put("c0004",comment1);
+			comments.put("c0005",comment2);
+			comments.put("c0006",comment3);
+
+//page.put("comments", comments);
+//page.comments("page_id", i);
+			BasicDBObject upd = new BasicDBObject();
+			upd.append("$push", new BasicDBObject().append("comments", comment1));
+			
+			coll.update(
+					query,
+					comments,
+	        		true, 
+	        		false);
+		
+		} 
+
+
+		Date myDate2 = new Date();
+		Timestamp timeStampDate2 = new Timestamp(myDate2.getTime());
+		System.out.println(timeStampDate2);
+		System.out.println(timeStampDate2.getTime()-timeStampDate1.getTime());
+		
+			
+		
+	}
+	
 }
