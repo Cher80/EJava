@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -81,9 +82,10 @@ public class TryMongo {
 		//clearTestColl("testColl");
 		//doUpdateComments();
 		//doPopulateComments();
-		//doUpdateInc();
-		getFromArray();
+		doUpdateInc();
+		//getFromArray();
 		//doUpdateIncArray();
+		//doFindSort();
 	}
 	
 
@@ -130,6 +132,40 @@ public class TryMongo {
 
 	
 	
+	public static void doFindSort() {
+		
+		DBCollection coll = db.getCollection("testColl");
+		
+		Date myDate1 = new Date();
+		Timestamp timeStampDate1 = new Timestamp(myDate1.getTime());
+		System.out.println(timeStampDate1);
+		BasicDBObject query = new BasicDBObject();
+		
+		//List obj;
+		
+		
+			
+			
+			BasicDBObject queryy = new BasicDBObject();
+			//query.append("page_id", i);
+			queryy.append("comments.cid", 2);
+			
+			
+			DBCursor cur = coll.find().sort(new BasicDBObject("comments.rating",+1)).limit(10);
+			
+			while(cur.hasNext()) {
+	            System.out.println(cur.next());
+	        }
+	
+		
+		Date myDate2 = new Date();
+		Timestamp timeStampDate2 = new Timestamp(myDate2.getTime());
+		System.out.println(timeStampDate2);
+		System.out.println(timeStampDate2.getTime()-timeStampDate1.getTime());
+	}
+	
+	
+	
 	
 	
 	public static void doUpdateIncArray() {
@@ -154,7 +190,10 @@ public class TryMongo {
 			//BasicDBObject inc = new BasicDBObject("$inc", new BasicDBObject("comments.0.rating", 1)); 
 			//.update({"events.profile":10},{$set:{"events.$.handled":0}},false,true)	
 			//YES!!!
-			BasicDBObject inc = new BasicDBObject("$inc", new BasicDBObject("comments.$.rating", 1));
+			Random randomGenerator = new Random();
+		    int randomInt = randomGenerator.nextInt(100);
+			
+			BasicDBObject inc = new BasicDBObject("$inc", new BasicDBObject("comments.$.rating", randomInt));
 			
 			coll.update(
 					queryup,
@@ -189,7 +228,10 @@ public class TryMongo {
 			BasicDBObject queryup = new BasicDBObject();
 			queryup.append("page_id", i);
 			
-			BasicDBObject inc = new BasicDBObject("$inc", new BasicDBObject("rating", 1));
+			Random randomGenerator = new Random();
+		    int randomInt = randomGenerator.nextInt(100);
+			
+			BasicDBObject inc = new BasicDBObject("$inc", new BasicDBObject("rating", randomInt));
 			
 			
 			coll.update(
