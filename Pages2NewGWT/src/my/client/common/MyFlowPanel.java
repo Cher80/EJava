@@ -17,14 +17,12 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
 		// TODO Auto-generated method stub
 		System.out.println("MyFlowPanel setWidget = " + w);
 		widgets_count = widgets_count +1;
-		this.getElement().getStyle().setProperty("border", "3px solid red");
-		// = this.getElement().getStyle().getProperty("left");
-		// int leftx = (int)this.getElement().getStyle().getProperty("left");
-		this.getElement().getStyle().setProperty("position", "relative");
 		
+		/*
+		this.getElement().getStyle().setProperty("border", "3px solid red");
+		this.getElement().getStyle().setProperty("position", "relative");		
 		this.getElement().getStyle().setProperty("left", -(widgets_count * 30) + "px");
-		//this.getElement().getStyle().setProperty("left", "-100px");
-		//((Widget) this).
+		*/
 		
 		Widget widget = Widget.asWidgetOrNull(w);
 		   if (widget != null) {

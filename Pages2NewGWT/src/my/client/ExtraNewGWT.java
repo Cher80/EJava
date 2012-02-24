@@ -13,6 +13,7 @@ import my.client.compos.MyCompositePlace;
 import my.client.compos2.MyComposite2;
 import my.client.compos.MyCompositeEventHandler;
 import my.client.compos.MyCompositeEventHandler2;
+import my.client.forum.ForumPlace;
 import my.client.topmenu.TopmenuView;
 import my.shared.FieldVerifier;
 
@@ -48,7 +49,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  */
 public class ExtraNewGWT implements EntryPoint {
 	
-	private Place defaultPlace = new MyCompositePlace("composplace1!");
+	private Place defaultPlace = new ForumPlace("ForumPlace");
 	private PanelForView appWidNew = new PanelForView();
     private SimplePanel appWidget = new SimplePanel();
     private SimplePanel appWidgetOld = new SimplePanel();
@@ -63,10 +64,10 @@ public class ExtraNewGWT implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		container.getElement().getStyle().setProperty("width", "300px");
-		container.getElement().getStyle().setProperty("overflow", "scroll");
+		//container.getElement().getStyle().setProperty("width", "300px");
+		//container.getElement().getStyle().setProperty("overflow", "scroll");
 		container.getElement().getStyle().setProperty("border", "1px solid green");
-		appWidNewNew.getElement().getStyle().setProperty("width", "1300px");
+		//appWidNewNew.getElement().getStyle().setProperty("width", "1300px");
 		
 		//appWidNewNew.getElement().getStyle().setProperty("display", "inline-block");
 		RootLayoutPanel.get().add(container);
@@ -95,6 +96,7 @@ public class ExtraNewGWT implements EntryPoint {
         // Start PlaceHistoryHandler with our PlaceHistoryMapper
         AppPlaceHistoryMapper historyMapper= GWT.create(AppPlaceHistoryMapper.class);
         PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
+        System.out.println("goto defaultPlace");
         historyHandler.register(placeController, eventBus, defaultPlace);
 
         
