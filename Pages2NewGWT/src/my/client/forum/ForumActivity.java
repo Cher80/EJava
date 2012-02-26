@@ -15,6 +15,7 @@ public class ForumActivity extends AbstractActivity implements ForumViewInterfac
     
     public ForumActivity(ForumPlace place, ClientFactory clientFactory) {
         this.name = place.getPlaceName(); 
+		System.out.println("ForumActivity =" + name);
         this.clientFactory = clientFactory;
     } 
     

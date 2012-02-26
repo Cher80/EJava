@@ -29,7 +29,7 @@ public class ForumView extends Composite implements ForumViewInterface{
 		
     	
     	//ScrollPanel panel = new ScrollPanel();
-    	panel.setSize("400px", "400px");
+    	panel.setSize("400px", "100px");
     	panel.getElement().getStyle().setProperty("border", "1px solid green");
     	
     	
