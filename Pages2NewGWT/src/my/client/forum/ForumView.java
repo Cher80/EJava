@@ -6,6 +6,7 @@ import my.client.theme.ThemeActivity;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -32,8 +33,11 @@ public class ForumView extends Composite implements ForumViewInterface{
     	
     	
     	//ScrollPanel panel = new ScrollPanel();
+    	//Window browserWindow = new Window();
+    	
+    	//int positionOne = Window.getClientWidth()/2 - 150;
     	panel.getElement().getStyle().setProperty("position", "absolute");
-    	panel.setSize("200px", "100px");
+    	panel.setSize("300px", "300px");
     	panel.getElement().getStyle().setProperty("border", "1px solid green");
     	panel.getElement().getStyle().setProperty("cssFloat", "left");
     	panel.getElement().getStyle().setProperty("left", "200px");
@@ -82,9 +86,11 @@ public class ForumView extends Composite implements ForumViewInterface{
     
     public void populate() {
     	for (int i=0;i<30;i++) {
+    		int forumId = this.presenter.getForumId();
     		
-    		ThemeActivity myThemeActivity = new ThemeActivity (commentsPanel, presenter.getClientFactory());
-    		myThemeActivity.setForumId(i);
+    		ThemeActivity myThemeActivity = new ThemeActivity (commentsPanel, presenter.getClientFactory(),forumId + i);
+    		//myThemeActivity.setForumId(forumId + i);
+    		//populate ()
     		//myThemeActivity.start(panel, presenter.getClientFactory().getEventBus());
     		/*
     		SimplePanel commentPanel = new SimplePanel();
@@ -100,6 +106,13 @@ public class ForumView extends Composite implements ForumViewInterface{
     	}
     }
     
+ 
+    @Override
+	public Presenter getPresenter() {
+		// TODO Auto-generated method stub
+		return this.presenter;
+		//this.forumNumber
+	}
     
     @Override
 	public void setPresenter(Presenter presenter) {

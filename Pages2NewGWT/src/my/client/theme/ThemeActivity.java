@@ -18,14 +18,16 @@ public class ThemeActivity implements ThemeViewInterface.Presenter{
 	private int forumId;
 	private ClientFactory clientFactory;
 	
-	public ThemeActivity(Panel panel, ClientFactory clientFactory) {
+	public ThemeActivity(Panel panel, ClientFactory clientFactory, int forumId) {
 		//System.out.println("ThemeActivity constructor");
 		// TODO Auto-generated constructor stub
 		this.clientFactory = clientFactory;
+		this.forumId = forumId;
 		ThemeView myThemeView = new ThemeView();
 		//System.out.println("ThemeActivity constructor1");
 		//myForumView.setName("myForumView");
 		myThemeView.setPresenter(this);
+		myThemeView.populate();
 		//myThemeView.setForumid
 		//System.out.println("ThemeActivity constructor2");
 		//myForumView.setButtonName(this.forumNumber);
@@ -40,7 +42,7 @@ public class ThemeActivity implements ThemeViewInterface.Presenter{
 		
 	}
 	
-	public void gotoForum(int forumId) {
+	public void gotoForum() {
 		//String forumIdStr = (String)forumId;
 		clientFactory.getPlaceController().goTo(new ForumPlace(Integer.toString(forumId)));
 	}
@@ -55,6 +57,7 @@ public class ThemeActivity implements ThemeViewInterface.Presenter{
 
 	public void setForumId(int forumId) {
 		this.forumId = forumId;
+		System.out.println("theme setForumId = " + this.forumId);
 	}
 
 }

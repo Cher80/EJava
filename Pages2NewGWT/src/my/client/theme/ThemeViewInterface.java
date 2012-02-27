@@ -10,7 +10,9 @@ public interface ThemeViewInterface extends IsWidget {
 	
 	public interface Presenter {
 
-		void gotoForum(int i);
+		void gotoForum();
+		public int getForumId();
+		public void setForumId(int forumId);
 		//public void goToCompos1New();
         //void goToCompos1(Place place);
         //void setThemeNa,e();

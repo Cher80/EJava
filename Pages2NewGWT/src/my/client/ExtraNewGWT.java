@@ -49,7 +49,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  */
 public class ExtraNewGWT implements EntryPoint {
 	
-	private Place defaultPlace = new ForumPlace("ForumPlace");
+	private Place defaultPlace = new ForumPlace("34");
 	private PanelForView appWidNew = new PanelForView();
     private SimplePanel appWidget = new SimplePanel();
     private SimplePanel appWidgetOld = new SimplePanel();

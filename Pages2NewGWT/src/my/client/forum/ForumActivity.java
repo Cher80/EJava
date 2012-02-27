@@ -12,10 +12,17 @@ public class ForumActivity extends AbstractActivity implements ForumViewInterfac
 	
 	private ClientFactory clientFactory;
     private String name;
+    private int forumId;
     
     public ForumActivity(ForumPlace place, ClientFactory clientFactory) {
-        this.name = place.getPlaceName(); 
-		System.out.println("ForumActivity =" + name);
+    	//place.toke
+    	//place.getPlaceName()
+    	//ForumPlace.Tokenizer.getToken(place);
+        this.setName(place.getPlaceName()); 
+        int forumId = Integer.parseInt( place.getPlaceName() );
+        this.setForumId(forumId);
+        System.out.println("place.getPlaceName() = " + place.getPlaceName());
+		System.out.println("ForumActivity.forumId = " + forumId);
         this.clientFactory = clientFactory;
     } 
     
@@ -42,6 +49,23 @@ public class ForumActivity extends AbstractActivity implements ForumViewInterfac
 
 	public ClientFactory getClientFactory() {
 		return clientFactory;
+	}
+
+	public int getForumId() {
+		return forumId;
+	}
+
+	public void setForumId(int forumId) {
+		this.forumId = forumId;
+	}
+
+	public String getName() {
+		//ForumPlace.Tokenizer.
+		return "ForumPref:" + name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	

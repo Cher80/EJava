@@ -15,9 +15,14 @@ public class ThemeView extends Composite implements ThemeViewInterface {
 
     
     public ThemeView() {
+   }
+    
+    public void populate () {
     	//System.out.println("ThemeView constructor");
-    	Label label = new Label("ThemeViewLabel");
-    	Button myButt1 = new Button("OloloButt2");
+    	int forumId = presenter.getForumId();
+    	System.out.print("" + forumId);
+    	Label label = new Label("ThemeViewLabel" + forumId);
+    	Button myButt1 = new Button("ThemeViewButt" + forumId);
 		//label.setWidth("100px");
 		//label.setStyleName("demo-label");
     	flowPanel.add(label);
@@ -27,7 +32,7 @@ public class ThemeView extends Composite implements ThemeViewInterface {
     	
     	myButt1.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				presenter.gotoForum(993);
+				presenter.gotoForum();
 				//ComposedEvent myEvent = new ComposedEvent(654);
 				//myEvent.dispatch(new MyCompositeEventHandler());
 			}
@@ -35,9 +40,8 @@ public class ThemeView extends Composite implements ThemeViewInterface {
     	
     	
     	initWidget(flowPanel);
+ 
     }
-    
-    
     
     
 	@Override

@@ -7,7 +7,7 @@ import my.client.compos2.MyComposite2View;
 
 public interface ClientFactory {
 	SimpleEventBusSingleton getEventBus();
-    PlaceController getPlaceController();
+	public PlaceController getPlaceController();
     MyCompositeView getMyCompositeView();
     MyComposite2View getMyComposite2View();
     //GoodbyeView getGoodbyeView();

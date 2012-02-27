@@ -7,10 +7,12 @@ import java.util.Set;
 import java.util.Stack;
 
 import my.client.forum.ForumAnimation;
+import my.client.forum.ForumView;
 
 
 
 import com.google.gwt.animation.client.Animation;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -85,9 +87,41 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
 		
 		
 		   if (widget != null) {
+
+		  	  
+		   	  String newToken = ((ForumView) widget).getPresenter().getName();
+		      System.out.println("newToken = " + newToken);
+			  
+		      int offsetDir = -300;
+		      Boolean findedInHistory = false;
+		      Iterator it2 = widgetsStack2.iterator();
+		      while(it2.hasNext() && !findedInHistory){
+			    	 // if (!isFirst) {
+			    	  Widget curWidget = (Widget) it2.next();
+				   	  String oldToken = ((ForumView) curWidget).getPresenter().getName();
+				   	  System.out.println("oldToken = " + oldToken);
+				   	  if (newToken.equals(oldToken)) {
+				   		  System.out.println("Sovpadenie tokenov");
+				   		  //System.out.println("Sovpadenie tokenov");
+				    	  System.out.println("widget.getElement().getOffsetLeft() = " + widget.getElement().getOffsetLeft());
+				    	  System.out.println("curWidget.getElement().getOffsetLeft() = " + curWidget.getElement().getOffsetLeft());
+				    	  
+				    	  int positionOne = Window.getClientWidth()/2 - 150;
+				    	  offsetDir = positionOne - curWidget.getElement().getOffsetLeft();
+				    	  findedInHistory = true;
+				   	  }
+		      }
+		      if (!findedInHistory) {
+		    	  int positionOne = Window.getClientWidth()/2 - 150;
+		    	  System.out.println("positionOne = " + positionOne);
+		    	  widget.getElement().getStyle().setProperty("left", positionOne + "px");
+				  this.add(widget);
+		      }
+		      
 			   
-			   widget.getElement().getStyle().setProperty("left", "0px");
-			   this.add(widget);
+			   
+			   
+			   
 			   
 			   widgetsStack2.push(widget);
 		    //Set s=widgetsStack.entrySet();
@@ -101,6 +135,7 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
 	    	  */
 		     // Boolean isFirst = false; 
 		      
+		     // while(it.hasNext() && widgetsStack2.size()>1){
 		      while(it.hasNext()){
 		    	 // if (!isFirst) {
 		    	  Widget curWidget = (Widget) it.next();
@@ -113,11 +148,13 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
 		    	  System.out.println("curWidget.getElement().getStyle().getLeft() = " + curWidget.getElement().getStyle().getLeft());
 		    	  System.out.println("curWidget.getElement().getOffsetLeft() = " + curWidget.getElement().getOffsetLeft());
 		    	  //System.out.println("curWidget.getElement().getOffsetTop() = " + curWidget.getElement().getOffsetTop());
-
+		    	  
+		    	  
+		    	  
 		    	  //int widgetLeft = curWidget.getElement().getStyle().getLeft();
 		    	  int widgetLeft = curWidget.getElement().getOffsetLeft();
 		    	  int widgetTop = curWidget.getElement().getOffsetTop();
-		    	  animation.scrollTo(widgetLeft + 200, widgetTop, 2000);
+		    	  animation.scrollTo(widgetLeft + offsetDir, widgetTop, 2000);
 		    	 // }
 		      }
 		     

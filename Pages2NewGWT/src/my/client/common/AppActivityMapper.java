@@ -28,8 +28,10 @@ public class AppActivityMapper implements ActivityMapper {
             return new MyCompositeActivity((MyCompositePlace) place, clientFactory);
 		else if (place instanceof MyComposite2Place)
             return new MyComposite2Activity((MyComposite2Place) place, clientFactory);
-		else if (place instanceof ForumPlace)
-            return new ForumActivity((ForumPlace) place, clientFactory);
+		else if (place instanceof ForumPlace) {
+            
+			return new ForumActivity((ForumPlace) place, clientFactory);
+		}
         return null;
 
 		
