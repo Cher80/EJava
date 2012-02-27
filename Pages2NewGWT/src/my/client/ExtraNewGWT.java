@@ -57,7 +57,7 @@ public class ExtraNewGWT implements EntryPoint {
     
     //private MySimpleLayoutPanel appWidNewNew = new MySimpleLayoutPanel();
     private MyFlowPanel appWidNewNew = new MyFlowPanel();
-    private MyFlowPanel container = new MyFlowPanel();
+    private SimplePanel container = new SimplePanel();
     
 
 	/**
@@ -74,15 +74,15 @@ public class ExtraNewGWT implements EntryPoint {
 		container.add(appWidNewNew);
 		
 		//RootPanel.get().add(appWidget);
-		//RootPanel.get().add(menuWidget);
+		RootPanel.get().add(menuWidget);
 		//RootPanel.get().add(appWidNew);
 		
 		
-		Button myButt1 = new Button("appWidNewNew");
-		//appWidNewNew.add(myButt1);
-		
-		TopmenuView myTopmenuView = new TopmenuView();
-		menuWidget.add(myTopmenuView);
+		//Button myButt1 = new Button("Goback!");
+		//container.add(myButt1);
+		//RootPanel.get().add(myButt1);
+		//TopmenuView myTopmenuView = new TopmenuView();
+		//menuWidget.add(myTopmenuView);
 		
 		ClientFactory clientFactory = GWT.create(my.client.common.ClientFactory.class);
         EventBus eventBus = clientFactory.getEventBus();

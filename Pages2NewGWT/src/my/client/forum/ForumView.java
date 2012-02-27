@@ -27,11 +27,16 @@ public class ForumView extends Composite implements ForumViewInterface{
 		//panel.getElement().getStyle().setProperty("border", "1px solid red");
 		//panel.add(myButt1);
 		
+    	//panel.getElement().getStyle().setProperty("border", "3px solid red");
+    	
+    	
     	
     	//ScrollPanel panel = new ScrollPanel();
-    	panel.setSize("400px", "100px");
+    	panel.getElement().getStyle().setProperty("position", "absolute");
+    	panel.setSize("200px", "100px");
     	panel.getElement().getStyle().setProperty("border", "1px solid green");
-    	
+    	panel.getElement().getStyle().setProperty("cssFloat", "left");
+    	panel.getElement().getStyle().setProperty("left", "200px");
     	
     	
     	
@@ -79,6 +84,7 @@ public class ForumView extends Composite implements ForumViewInterface{
     	for (int i=0;i<30;i++) {
     		
     		ThemeActivity myThemeActivity = new ThemeActivity (commentsPanel, presenter.getClientFactory());
+    		myThemeActivity.setForumId(i);
     		//myThemeActivity.start(panel, presenter.getClientFactory().getEventBus());
     		/*
     		SimplePanel commentPanel = new SimplePanel();

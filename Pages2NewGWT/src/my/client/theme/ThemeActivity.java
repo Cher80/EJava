@@ -15,17 +15,18 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 
 public class ThemeActivity implements ThemeViewInterface.Presenter{
-
+	private int forumId;
 	private ClientFactory clientFactory;
 	
 	public ThemeActivity(Panel panel, ClientFactory clientFactory) {
-		System.out.println("ThemeActivity constructor");
+		//System.out.println("ThemeActivity constructor");
 		// TODO Auto-generated constructor stub
 		this.clientFactory = clientFactory;
 		ThemeView myThemeView = new ThemeView();
 		//System.out.println("ThemeActivity constructor1");
 		//myForumView.setName("myForumView");
 		myThemeView.setPresenter(this);
+		//myThemeView.setForumid
 		//System.out.println("ThemeActivity constructor2");
 		//myForumView.setButtonName(this.forumNumber);
 		panel.add(myThemeView);
@@ -42,6 +43,18 @@ public class ThemeActivity implements ThemeViewInterface.Presenter{
 	public void gotoForum(int forumId) {
 		//String forumIdStr = (String)forumId;
 		clientFactory.getPlaceController().goTo(new ForumPlace(Integer.toString(forumId)));
+	}
+
+
+
+	public int getForumId() {
+		return forumId;
+	}
+
+
+
+	public void setForumId(int forumId) {
+		this.forumId = forumId;
 	}
 
 }
