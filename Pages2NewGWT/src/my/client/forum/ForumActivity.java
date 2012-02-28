@@ -2,22 +2,25 @@ package my.client.forum;
 
 import my.client.common.ClientFactory;
 import my.client.compos2.MyComposite2View;
+import my.client.helpers.HavePlace;
 
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
-public class ForumActivity extends AbstractActivity implements ForumViewInterface.Presenter {
+public class ForumActivity extends AbstractActivity implements ForumViewInterface.Presenter, HavePlace {
 	
 	private ClientFactory clientFactory;
     private String name;
     private int forumId;
+    private ForumPlace place;
     
     public ForumActivity(ForumPlace place, ClientFactory clientFactory) {
     	//place.toke
     	//place.getPlaceName()
     	//ForumPlace.Tokenizer.getToken(place);
+    	this.place = place;
         this.setName(place.getPlaceName()); 
         int forumId = Integer.parseInt( place.getPlaceName() );
         this.setForumId(forumId);
@@ -32,6 +35,8 @@ public class ForumActivity extends AbstractActivity implements ForumViewInterfac
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		// TODO Auto-generated method stub
+        System.out.println("ForumActivity start");
+
 		ForumView myForumView = new ForumView();
 		//myForumView.setName("myForumView");
 		myForumView.setPresenter(this);
@@ -67,6 +72,12 @@ public class ForumActivity extends AbstractActivity implements ForumViewInterfac
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public ForumPlace getPlace() {
+		return place;
+	}
+
+
 
 	
 

@@ -94,7 +94,7 @@ public class ExtraNewGWT implements EntryPoint {
         activityManager.setDisplay(appWidNewNew);
 
         // Start PlaceHistoryHandler with our PlaceHistoryMapper
-        AppPlaceHistoryMapper historyMapper= GWT.create(AppPlaceHistoryMapper.class);
+        AppPlaceHistoryMapper historyMapper = clientFactory.getHistoryMapper();
         PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
         System.out.println("goto defaultPlace");
         historyHandler.register(placeController, eventBus, defaultPlace);

@@ -42,6 +42,7 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
 		
 		
 		
+		
 		Widget widget = Widget.asWidgetOrNull(w);
 		
 		
