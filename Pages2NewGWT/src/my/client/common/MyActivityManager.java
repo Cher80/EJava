@@ -1,11 +1,14 @@
 package my.client.common;
 
+import my.client.forum.ForumActivity;
+import my.client.forum.ForumPlace;
 import my.client.helpers.HaveView;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.event.shared.ResettableEventBus;
 import com.google.gwt.event.shared.UmbrellaException;
+import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceChangeRequestEvent;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -51,6 +54,8 @@ public class MyActivityManager implements PlaceChangeEvent.Handler, PlaceChangeR
     public void start(AcceptsOneWidget panel, com.google.gwt.event.shared.EventBus eventBus) {
     }
   };
+  
+  private ClientFactory clientFactory;
 
   private final ActivityMapper mapper;
 
@@ -78,8 +83,9 @@ public class MyActivityManager implements PlaceChangeEvent.Handler, PlaceChangeR
    * @param eventBus source of {@link PlaceChangeEvent} and
    *          {@link PlaceChangeRequestEvent} events.
    */
-  public MyActivityManager(ActivityMapper mapper, EventBus eventBus) {
+  public MyActivityManager(ActivityMapper mapper, EventBus eventBus, ClientFactory clientFactory) {
     this.mapper = mapper;
+    this.clientFactory = clientFactory;
     this.eventBus = eventBus;
     this.stopperedEventBus = new ResettableEventBus((com.google.gwt.event.shared.EventBus) eventBus);
   }
@@ -108,11 +114,25 @@ public class MyActivityManager implements PlaceChangeEvent.Handler, PlaceChangeR
    */
   public void onPlaceChange(PlaceChangeEvent event) {
 	 System.out.println("MyActivityManager onPlaceChange");
-    Activity nextActivity = getNextActivity(event);
+	 Place placeToGo = event.getNewPlace(); 
+	 
+	 Activity nextActivity;
+	 
+	 nextActivity = (Activity) clientFactory.getHistoryKeeper().checkIsVisited(placeToGo);
+
+	 if (nextActivity == null) {
+		 nextActivity = getNextActivity(event);
+		clientFactory.getHistoryKeeper().pushNewActivity((ForumActivity)nextActivity);
+
+	 //Bewitched by india The best exotic marigold hotel
+	 //Activity nextActivity = mapper.getActivity(event.getNewPlace());
+	 
+	 
+	 //display.setWidget(view);
+
+	// Activity nextActivity = getNextActivity(event);
     
-    //showWidget( ((HaveView)nextActivity).getView().asWidget());
-    //tryStart();
-    /*
+    
     Throwable caughtOnStop = null;
     Throwable caughtOnCancel = null;
     Throwable caughtOnStart = null;
@@ -168,7 +188,17 @@ public class MyActivityManager implements PlaceChangeEvent.Handler, PlaceChangeR
 
       throw new UmbrellaException(causes);
     }
-    */
+	 
+	 
+	 }
+	 
+	 
+	 else {
+		 //nextActivity.start(display, clientFactory.getEventBus());
+		 display.setWidget( ((HaveView) nextActivity).getView().asWidget()  );
+		 return;
+	 }  
+    
   }
 
   /**

@@ -58,7 +58,7 @@ public class ExtraNewGWT implements EntryPoint {
     
     //private MySimpleLayoutPanel appWidNewNew = new MySimpleLayoutPanel();
     private MyFlowPanel appWidNewNew = new MyFlowPanel();
-    private SimplePanel container = new SimplePanel();
+    private FlowPanel container = new FlowPanel();
     
 
 	/**
@@ -75,7 +75,7 @@ public class ExtraNewGWT implements EntryPoint {
 		container.add(appWidNewNew);
 		
 		//RootPanel.get().add(appWidget);
-		RootPanel.get().add(menuWidget);
+		//RootPanel.get().add(menuWidget);
 		//RootPanel.get().add(appWidNew);
 		
 		
@@ -91,7 +91,7 @@ public class ExtraNewGWT implements EntryPoint {
 
         // Start ActivityManager for the main widget with our ActivityMapper
         ActivityMapper activityMapper = new AppActivityMapper(clientFactory);
-        MyActivityManager activityManager = new MyActivityManager(activityMapper, eventBus);
+        MyActivityManager activityManager = new MyActivityManager(activityMapper, eventBus, clientFactory);
         activityManager.setDisplay(appWidNewNew);
 
         // Start PlaceHistoryHandler with our PlaceHistoryMapper

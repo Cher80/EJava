@@ -48,26 +48,10 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
 	  	HistoryKeeper historyKeeper = ((HaveClientFactory)curActivity).getClientFactory().getHistoryKeeper();
 	  	Boolean isNeedToRemove = ((HaveClientFactory)curActivity).getClientFactory().getHistoryKeeper().isNeedToRemove(widget,currentWidget);
 	  	if (isNeedToRemove) {
-	  		//this.remove(widget);
-	  		System.out.println("this.remove(widget)");
-	  		widget.getElement().getStyle().setProperty("top", "200PX");
-	  		//Activity curActivity = ((HavePresenter)widget).getPresenter();
-		  	//HistoryKeeper historyKeeper = ((HaveClientFactory)curActivity).getClientFactory().getHistoryKeeper();
-		  	//historyKeeper.popWidget(widget);
+	  		this.remove(widget);
+		  	historyKeeper.popWidget(widget);
 		  	
-	  		/*
-		  	widgetsStack2 = historyKeeper.getWidgetsToMove();
-		  	Iterator it = widgetsStack2.iterator();
- 		      
- 		      while(it.hasNext()){
- 		    	 // if (!isFirst) {
- 		    	  Widget curWidget = (Widget) it.next();
- 		    	  //isFirst = true;
- 		    	  System.out.println("Iterator");
- 		    	  System.out.println("curWidget.getElement().getAbsoluteLeft = " + curWidget.getElement().getAbsoluteLeft());
 
- 		      }
- 		      */
 	  	}
 	}
 	
@@ -82,18 +66,23 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
 		Widget widget = Widget.asWidgetOrNull(w);
 		
 		if (widget != null) {
-			widgets_count = widgets_count +1;
 			Activity curActivity2 = ((HavePresenter)w).getPresenter();
-			Stack <Widget>widgetsStack3 =  ((HaveClientFactory)curActivity2).getClientFactory().getHistoryKeeper().getWidgetsToMove();
 
 			
 			this.currentWidget = widget;
-			 int offsetDir = -300;
+			
+			int offsetDir = -300;
+	    	 
+	    	 
+		    	  
+
 			//int positionOne = Window.getClientWidth()/2 - 150;
 		 	//System.out.println("positionOne = " + positionOne);
    	  		//widget.getElement().getStyle().setProperty("left", positionOne + "px");
    	  		
 			 int positionOne = Window.getClientWidth()/2 - 150;
+			int windowCenter = Window.getClientWidth()/2;
+			 
 			 
    	  		Activity curActivity = ((HavePresenter)widget).getPresenter();
    	  		HistoryKeeper historyKeeper = ((HaveClientFactory)curActivity).getClientFactory().getHistoryKeeper();
@@ -101,8 +90,13 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
    			
    			
    			if (!isHistoryWidget) {
-   				widget.getElement().getStyle().setProperty("left", positionOne + "px");
    				this.add(widget);
+   				int widgetWidth = widget.getElement().getOffsetWidth();
+   				int initialPosition = widgetWidth + (windowCenter - widgetWidth/2);
+   				widget.getElement().getStyle().setProperty("left", initialPosition + "px");
+   				
+   				//System.out.println("width = " + currentWidget.getElement().getOffsetWidth());
+   				
    				
    			}
    			else {

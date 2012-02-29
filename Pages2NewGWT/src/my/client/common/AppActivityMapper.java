@@ -33,12 +33,8 @@ public class AppActivityMapper implements ActivityMapper {
 		else if (place instanceof MyComposite2Place)
             return new MyComposite2Activity((MyComposite2Place) place, clientFactory);
 		else if (place instanceof ForumPlace) {
-			//clientFactory.
-			//mapper.getToken(new MyPlace(stateVar1,
-					//stateVar2
-			//String token =	clientFactory.getHistoryMapper().getToken(place);
-			//System.out.println("AppActivityMapper =" + token);
-			
+
+			/*
 			ForumActivity toReturnActivity = (ForumActivity) clientFactory.getHistoryKeeper().checkIsVisited(place);
 			if (toReturnActivity == null) {
 				toReturnActivity = new ForumActivity((ForumPlace) place, clientFactory);
@@ -54,7 +50,8 @@ public class AppActivityMapper implements ActivityMapper {
 			
 	    	//
 			//ForumActivity toReturnActivity = new ForumActivity((ForumPlace) place, clientFactory);
-			return toReturnActivity;
+			return toReturnActivity;*/
+			return new ForumActivity((ForumPlace) place, clientFactory);
 		}
         return null;
 		

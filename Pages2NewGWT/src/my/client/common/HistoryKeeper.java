@@ -49,7 +49,29 @@ public class HistoryKeeper {
 	
 	
 	public void popWidget(Widget widget) {
-		activityStack.pop();
+		//activityStack.pop();
+		Iterator<Activity> it = activityStack.iterator();
+//		int historyLengh = activityStack.size();
+//		int i = 0;
+	   
+		while(it.hasNext()){
+	    	
+	    	Activity curActivity = it.next();
+	    	Widget curWidget = ((HaveView)curActivity).getView().asWidget();
+	    	if (widget.equals(curWidget)) {
+	    		System.out.println("popWidget sovpalo!");
+	    		it.remove();
+	    		return;
+	    	}
+	    	//this.activityStack.peek()
+	    	//Place oldPlace = ((HavePlace) curActivity).getPlace();
+			//String oldToken =	clientFactory.getHistoryMapper().getToken(oldPlace);
+	    	//System.out.println("getHistoryWidget!");
+	    	
+
+	      }
+		
+		
 	}
 	
 	public void pushNewActivity(ForumActivity newWidget) {
@@ -99,14 +121,14 @@ public class HistoryKeeper {
 	    	Widget curWidget = ((HaveView)curActivity).getView().asWidget();
 	    	if (movedWidget.equals(curWidget)) {
 	    		movedWidgetPosition = ii;
-	    		//System.out.println("movedWidget =" + ii);
+	    		System.out.println("movedWidget =" + ii);
 
 	    	}
 	      }
 		
 		
 		if (movedWidgetPosition > currShowedWidgetPosition) {
-			//System.out.println("movedWidget need to remove =" + movedWidgetPosition + "currShowedWidgetPosition =" + currShowedWidgetPosition);
+			System.out.println("movedWidget need to remove =" + movedWidgetPosition + "currShowedWidgetPosition =" + currShowedWidgetPosition);
 			return true;
 		} else {
 			return false;
