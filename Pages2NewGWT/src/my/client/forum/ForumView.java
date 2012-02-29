@@ -1,9 +1,12 @@
 package my.client.forum;
 
 import my.client.common.ClientFactoryImpl;
+import my.client.helpers.HaveClientFactory;
+import my.client.helpers.HavePresenter;
 import my.client.compos2.IMyComposite2View.Presenter;
 import my.client.theme.ThemeActivity;
 
+import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
@@ -14,7 +17,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 
-public class ForumView extends Composite implements ForumViewInterface{
+public class ForumView extends Composite implements ForumViewInterface, HavePresenter{
 	
 	private ScrollPanel panel = new ScrollPanel();
 	private Presenter presenter;
@@ -88,7 +91,7 @@ public class ForumView extends Composite implements ForumViewInterface{
     	for (int i=0;i<30;i++) {
     		int forumId = this.presenter.getForumId();
     		
-    		ThemeActivity myThemeActivity = new ThemeActivity (commentsPanel, presenter.getClientFactory(),forumId + i);
+    		ThemeActivity myThemeActivity = new ThemeActivity (commentsPanel, ((HaveClientFactory)presenter).getClientFactory(),forumId + i);
     		//myThemeActivity.setForumId(forumId + i);
     		//populate ()
     		//myThemeActivity.start(panel, presenter.getClientFactory().getEventBus());
@@ -107,12 +110,7 @@ public class ForumView extends Composite implements ForumViewInterface{
     }
     
  
-    @Override
-	public Presenter getPresenter() {
-		// TODO Auto-generated method stub
-		return this.presenter;
-		//this.forumNumber
-	}
+
     
     @Override
 	public void setPresenter(Presenter presenter) {
@@ -126,5 +124,15 @@ public class ForumView extends Composite implements ForumViewInterface{
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public Activity getPresenter() {
+		// TODO Auto-generated method stub
+		return (Activity) this.presenter;
+	}
+
+
+
 
 }

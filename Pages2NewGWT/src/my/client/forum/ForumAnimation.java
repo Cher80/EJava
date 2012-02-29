@@ -1,19 +1,23 @@
 package my.client.forum;
 
+import my.client.common.MyFlowPanel;
+
 import com.google.gwt.animation.client.Animation;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.dom.client.Style;
 public class ForumAnimation extends Animation {
 
 	private Widget widget;
+	private MyFlowPanel flowPanel;
 	private int startX;
     private int startY;
     private int finalX;
     private int finalY;
     
-	 public ForumAnimation(Widget widget)
+	 public ForumAnimation(Widget widget, MyFlowPanel flowPanel)
 	   {
 	        this.widget = widget;
+	        this.flowPanel = flowPanel;
 	   }
 	 
 	 public void scrollTo(int x, int y, int milliseconds)
@@ -38,5 +42,14 @@ public class ForumAnimation extends Animation {
         //this.widget.getElement().getStyle().setTop(positionY, Style.Unit.PX);
         widget.getElement().getStyle().setProperty("left",positionX + "PX");
 	}
+	
+	@Override
+    protected void onComplete()
+    {
+        super.onComplete();
+        flowPanel.doClearance(this.widget);
+        //this.element.getStyle().setLeft(this.finalX, Style.Unit.PX);
+        //this.element.getStyle().setTop(this.finalY, Style.Unit.PX);
+    }
 
 }
