@@ -1,5 +1,7 @@
 package my.client.common;
 
+import java.util.Stack;
+
 import my.client.compos.MyCompositeActivity;
 import my.client.compos.MyCompositePlace;
 import my.client.compos2.MyComposite2Activity;
@@ -42,11 +44,15 @@ public class AppActivityMapper implements ActivityMapper {
 				toReturnActivity = new ForumActivity((ForumPlace) place, clientFactory);
 				clientFactory.getHistoryKeeper().pushNewActivity((ForumActivity)toReturnActivity);
 			}
+			else {
+				Stack <Widget>widgetsStack =  clientFactory.getHistoryKeeper().getWidgetsToMove();
+			}
 			
 			Place oldPlace = ((HavePlace) toReturnActivity).getPlace();
 			String oldToken =	clientFactory.getHistoryMapper().getToken(oldPlace);	    	
 	    	System.out.println("toReturnActivity oldToken = " + oldToken);
 			
+	    	//
 			//ForumActivity toReturnActivity = new ForumActivity((ForumPlace) place, clientFactory);
 			return toReturnActivity;
 		}

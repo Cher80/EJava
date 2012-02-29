@@ -4,6 +4,7 @@ package my.client;
 import my.client.common.AppActivityMapper;
 import my.client.common.AppPlaceHistoryMapper;
 import my.client.common.ClientFactory;
+import my.client.common.MyActivityManager;
 import my.client.common.MyFlowPanel;
 import my.client.common.MySimpleLayoutPanel;
 import my.client.common.PanelForView;
@@ -90,7 +91,7 @@ public class ExtraNewGWT implements EntryPoint {
 
         // Start ActivityManager for the main widget with our ActivityMapper
         ActivityMapper activityMapper = new AppActivityMapper(clientFactory);
-        ActivityManager activityManager = new ActivityManager(activityMapper, eventBus);
+        MyActivityManager activityManager = new MyActivityManager(activityMapper, eventBus);
         activityManager.setDisplay(appWidNewNew);
 
         // Start PlaceHistoryHandler with our PlaceHistoryMapper

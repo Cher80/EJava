@@ -75,8 +75,6 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
 	public void setWidget(IsWidget w) {
 		// TODO Auto-generated method stub
 		System.out.println("MyFlowPanel setWidget = " + w);
-		widgets_count = widgets_count +1;
-		
 		
 		
 		
@@ -84,6 +82,10 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
 		Widget widget = Widget.asWidgetOrNull(w);
 		
 		if (widget != null) {
+			widgets_count = widgets_count +1;
+			Activity curActivity2 = ((HavePresenter)w).getPresenter();
+			Stack <Widget>widgetsStack3 =  ((HaveClientFactory)curActivity2).getClientFactory().getHistoryKeeper().getWidgetsToMove();
+
 			
 			this.currentWidget = widget;
 			 int offsetDir = -300;
