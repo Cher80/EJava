@@ -54,7 +54,7 @@ public class ExtraNewGWT implements EntryPoint {
 	private PanelForView appWidNew = new PanelForView();
     private SimplePanel appWidget = new SimplePanel();
     private SimplePanel appWidgetOld = new SimplePanel();
-    private SimplePanel menuWidget = new SimplePanel();
+    private FlowPanel menuWidgetPanel = new FlowPanel();
     
     //private MySimpleLayoutPanel appWidNewNew = new MySimpleLayoutPanel();
     private MyFlowPanel appWidNewNew = new MyFlowPanel();
@@ -65,14 +65,26 @@ public class ExtraNewGWT implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
+		Label label = new Label("TopMenu");
+		menuWidgetPanel.add(label);
+		menuWidgetPanel.setStyleName("topMenu");
+		
+		RootPanel.get().add(menuWidgetPanel);
+		//RootLayoutPanel.get().add(menuWidgetPanel);
 		//container.getElement().getStyle().setProperty("width", "300px");
 		//container.getElement().getStyle().setProperty("overflow", "scroll");
-		container.getElement().getStyle().setProperty("border", "1px solid green");
+		//container.getElement().getStyle().setProperty("border", "1px solid green");
 		//appWidNewNew.getElement().getStyle().setProperty("width", "1300px");
 		
 		//appWidNewNew.getElement().getStyle().setProperty("display", "inline-block");
-		RootLayoutPanel.get().add(container);
+		container.setStyleName("mainContainer");
+		//RootLayoutPanel.get().add(container);
+		RootPanel.get().add(container);
 		container.add(appWidNewNew);
+		
+		FlowPanel clearBothPanel = new FlowPanel();
+		clearBothPanel.setStyleName("clearBothPanel");
+		container.add(clearBothPanel);
 		
 		//RootPanel.get().add(appWidget);
 		//RootPanel.get().add(menuWidget);
