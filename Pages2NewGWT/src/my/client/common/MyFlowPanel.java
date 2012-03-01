@@ -102,6 +102,7 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
    				this.add(widget);
  //  				int widgetWidth = widget.getElement().getOffsetWidth();
 
+   				/*
    				int widgetWidth = widget.getElement().getOffsetWidth();
    				int initialPosition = widgetWidth + (windowCenter - widgetWidth/2);
    				System.out.println("windowCenter " + windowCenter); 
@@ -110,7 +111,7 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
 
    				System.out.println("initialPosition " + initialPosition); 
    				widget.getElement().getStyle().setProperty("left", initialPosition + "px");
-   				
+   				*/
    				//System.out.println("width = " + currentWidget.getElement().getOffsetWidth());
    				
    				
@@ -118,7 +119,24 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
    			else {
    				offsetDir = positionOne - widget.getElement().getOffsetLeft();
    			}
-   			
+		    	 System.out.println("widget.getElement().getOffsetLeft() = " + widget.getElement().getOffsetLeft());
+		    	 System.out.println("this.getElement().getOffsetLeft() = " + this.getElement().getOffsetLeft());
+ 
+		    	 System.out.println("widget.left = " + widget.getElement().getStyle().getProperty("left"));
+		    	 System.out.println("this.left = " + this.getElement().getStyle().getProperty("left"));
+
+		    	 int curWidgetLeft = widget.getElement().getOffsetLeft();
+		    	 int myFloatPanelLeft = this.getElement().getOffsetLeft();
+
+		    	 //int curWidgetLeft = widget.getElement().getStyle().getProperty("left");
+		    	 //int myFloatPanelLeft = this.getElement().getStyle().getProperty("left");
+
+		    	 int curWidgetTop = widget.getElement().getOffsetTop();
+ 		    	 
+ 		    	//this.getElement().getStyle().setProperty("left", -curWidgetLeft + "PX");
+		    	 MyFlowPanelAnimation animation = new MyFlowPanelAnimation(this); 	 
+		    	 animation.scrollTo(-curWidgetLeft, curWidgetTop, myFloatPanelLeft, curWidgetTop,2000);
+		    	 
    			widgetsStack2 = historyKeeper.getWidgetsToMove();
    			Iterator it = widgetsStack2.iterator();
    		      
@@ -129,11 +147,11 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
    		    	  System.out.println("animation Iterator");
    		    	  
    		    	  //curWidget.getElement().getStyle().setProperty("left", -(widgets_count * 30) + "px");
-   		    	  ForumAnimation animation = new ForumAnimation(curWidget, this);
+   		    	  //ForumAnimation animation = new ForumAnimation(curWidget, this);
    		    	  //System.out.println("curWidget.getElement().getAbsoluteLeft = " + curWidget.getElement().getAbsoluteLeft());
 
    		    	  //System.out.println("curWidget.getElement().getStyle().getLeft() = " + curWidget.getElement().getStyle().getLeft());
-   		    	 System.out.println("curWidget.getElement().getOffsetLeft() = " + curWidget.getElement().getOffsetLeft());
+//   		    	 System.out.println("curWidget.getElement().getOffsetLeft() = " + curWidget.getElement().getOffsetLeft());
    		    	  //System.out.println("curWidget.getElement().getOffsetTop() = " + curWidget.getElement().getOffsetTop());
    		    	  
    		    	  
@@ -142,7 +160,7 @@ public class MyFlowPanel extends FlowPanel implements AcceptsOneWidget {
    		    	  int widgetLeft = curWidget.getElement().getOffsetLeft();
    		    	  int widgetTop = curWidget.getElement().getOffsetTop();
    		    	  //widget.getElement().getStyle().setProperty("top","33PX");
-   		    	  animation.scrollTo(widgetLeft + offsetDir, widgetTop, 2000);
+   		    	  //animation.scrollTo(widgetLeft + offsetDir, widgetTop, 2000);
    				
    		      }
    		   

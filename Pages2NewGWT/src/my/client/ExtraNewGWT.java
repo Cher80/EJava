@@ -22,6 +22,7 @@ import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
@@ -31,6 +32,7 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ComplexPanel;
@@ -65,8 +67,8 @@ public class ExtraNewGWT implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		Label label = new Label("TopMenu");
-		menuWidgetPanel.add(label);
+		//Label label = new Label("TopMenu");
+		//menuWidgetPanel.add(label);
 		menuWidgetPanel.setStyleName("topMenu");
 		
 		RootPanel.get().add(menuWidgetPanel);
@@ -77,9 +79,30 @@ public class ExtraNewGWT implements EntryPoint {
 		//appWidNewNew.getElement().getStyle().setProperty("width", "1300px");
 		
 		//appWidNewNew.getElement().getStyle().setProperty("display", "inline-block");
+		
+		
+		/*
+		FlowPanel goBackContainer = new FlowPanel();
+		goBackContainer.setStyleName("goBackContainer");
+		RootPanel.get().add(goBackContainer);
+		*/
+		Button BackButt = new Button("BackButt");
+		menuWidgetPanel.add(BackButt);
+		
+		//myEventBus.addHandler(ComposedEvent.TYPE, new MyCompositeEventHandler2());
+		//SimpleEventBusSingleton.getInstance().addHandler(ComposedEvent.TYPE, this);
+		
+		BackButt.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				History.back();
+			}
+		});
+		
+		
 		container.setStyleName("mainContainer");
-		//RootLayoutPanel.get().add(container);
 		RootPanel.get().add(container);
+		//layoutContainer.add(container);
+		
 		container.add(appWidNewNew);
 		
 		FlowPanel clearBothPanel = new FlowPanel();

@@ -4,8 +4,20 @@ body {
 }
 
 .mainContainer {
+	position: relative;
+	overflow:hidden;
 	width:700px;
 	border: 1px solid green;
+	left:0px;
+	margin-left:100px;
+	/**position: relative;**/
+}
+
+.layoutContainer {
+	/*position: relative;*/
+	width:800px;
+	border: 1px solid blue;
+	
 }
 
 .topMenu {
@@ -15,8 +27,10 @@ body {
 }
 
 .MyFlowPanel {
+	width: 10000px;
 	border: 1px solid red;
-	/**position: relative;**/
+	position: relative;
+	
 }
 
 .clearBothPanel {

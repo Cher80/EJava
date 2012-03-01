@@ -39,11 +39,11 @@ public class ForumView extends Composite implements ForumViewInterface, HavePres
     	//Window browserWindow = new Window();
     	
     	//int positionOne = Window.getClientWidth()/2 - 150;
-    	panel.getElement().getStyle().setProperty("position", "absolute");
+    	//panel.getElement().getStyle().setProperty("position", "absolute");
     	panel.setSize("300px", "300px");
     	panel.getElement().getStyle().setProperty("border", "1px solid green");
     	panel.getElement().getStyle().setProperty("cssFloat", "left");
-    	panel.getElement().getStyle().setProperty("left", "200px");
+    	panel.getElement().getStyle().setProperty("left", "0px");
     	
     	
     	
