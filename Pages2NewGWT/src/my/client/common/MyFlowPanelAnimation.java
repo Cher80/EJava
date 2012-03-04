@@ -2,6 +2,7 @@ package my.client.common;
 
 import my.client.common.MyFlowPanel;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.animation.client.Animation;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.dom.client.Style;
@@ -36,8 +37,9 @@ public class MyFlowPanelAnimation extends Animation {
 		// TODO Auto-generated method stub
 		double positionX = startX + (progress * (this.finalX - startX));
         double positionY = startY + (progress * (this.finalY - startY));
-   	 	System.out.println("onUpdate X = " + positionX);
-
+   	 	//System.out.println("onUpdate X = " + positionX);
+   	 	//Log.debug("This is a 'DEBUG' test message");
+   	 	
         //this.widget.getElement().
        // this.widget.getElement().getStyle().setLeft(positionX, Style.Unit.PX);
         //this.widget.getElement().getStyle().setTop(positionY, Style.Unit.PX);

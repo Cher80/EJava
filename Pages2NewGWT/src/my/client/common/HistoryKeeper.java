@@ -9,6 +9,7 @@ import my.client.helpers.HavePlace;
 import my.client.helpers.HavePresenter;
 import my.client.helpers.HaveView;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
@@ -27,7 +28,7 @@ public class HistoryKeeper {
 //		String newToken = ((ForumView) widget).getPresenter().getName();
 		String newToken =	clientFactory.getHistoryMapper().getToken(newPlace);
     	System.out.println("checkIsVisited iterator newToken = " + newToken);
-
+    	Log.debug("checkIsVisited iterator newToken = " + newToken);
 		Iterator<Activity> it = activityStack.iterator();
 	    while(it.hasNext()){
 	    	
@@ -46,6 +47,17 @@ public class HistoryKeeper {
 	}
 	
 	
+	
+	public Activity getPrevious() {
+		
+		Log.debug("activityStack.size() = " + activityStack.size());
+		Log.debug("activityStack.size() - 1 = " + (activityStack.size() - 1));
+		Activity curActivity = activityStack.elementAt(activityStack.size() - 1);
+		Place oldPlace = ((HavePlace) curActivity).getPlace();
+		String oldToken =	clientFactory.getHistoryMapper().getToken(oldPlace);
+		Log.debug("oldToken " + oldToken);
+		return activityStack.elementAt(activityStack.size() - 2);
+	}
 	
 	
 	public void popWidget(Widget widget) {

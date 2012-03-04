@@ -15,9 +15,11 @@ import my.client.compos2.MyComposite2;
 import my.client.compos.MyCompositeEventHandler;
 import my.client.compos.MyCompositeEventHandler2;
 import my.client.forum.ForumPlace;
+import my.client.helpers.HavePlace;
 import my.client.topmenu.TopmenuView;
 import my.shared.FieldVerifier;
 
+import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.EntryPoint;
@@ -57,7 +59,7 @@ public class ExtraNewGWT implements EntryPoint {
     private SimplePanel appWidget = new SimplePanel();
     private SimplePanel appWidgetOld = new SimplePanel();
     private FlowPanel menuWidgetPanel = new FlowPanel();
-    
+    private ClientFactory clientFactory;
     //private MySimpleLayoutPanel appWidNewNew = new MySimpleLayoutPanel();
     private MyFlowPanel appWidNewNew = new MyFlowPanel();
     private FlowPanel container = new FlowPanel();
@@ -92,11 +94,7 @@ public class ExtraNewGWT implements EntryPoint {
 		//myEventBus.addHandler(ComposedEvent.TYPE, new MyCompositeEventHandler2());
 		//SimpleEventBusSingleton.getInstance().addHandler(ComposedEvent.TYPE, this);
 		
-		BackButt.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				History.back();
-			}
-		});
+		
 		
 		
 		container.setStyleName("mainContainer");
@@ -120,7 +118,7 @@ public class ExtraNewGWT implements EntryPoint {
 		//TopmenuView myTopmenuView = new TopmenuView();
 		//menuWidget.add(myTopmenuView);
 		
-		ClientFactory clientFactory = GWT.create(my.client.common.ClientFactory.class);
+		this.clientFactory = GWT.create(my.client.common.ClientFactory.class);
         EventBus eventBus = clientFactory.getEventBus();
         PlaceController placeController = clientFactory.getPlaceController();
 
@@ -139,6 +137,14 @@ public class ExtraNewGWT implements EntryPoint {
         // Goes to the place represented on URL else default place
         historyHandler.handleCurrentHistory();
 
+        BackButt.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				//History.back();
+				Activity curActivity = clientFactory.getHistoryKeeper().getPrevious();
+				Place oldPlace = ((HavePlace) curActivity).getPlace();
+				clientFactory.getPlaceController().goTo(oldPlace);
+			}
+		});
 		
 		
 	}

@@ -27,6 +27,7 @@ body {
 }
 
 .MyFlowPanel {
+	margin-left:100px;
 	width: 10000px;
 	border: 1px solid red;
 	position: relative;
