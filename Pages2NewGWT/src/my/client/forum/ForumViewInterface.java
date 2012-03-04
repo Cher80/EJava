@@ -27,6 +27,9 @@ public interface ForumViewInterface extends IsWidget {
 		int getForumId();
 		String getName();
 		public ForumPlace getPlace();
+
+		void loadMore();
+		
 		
     }
 

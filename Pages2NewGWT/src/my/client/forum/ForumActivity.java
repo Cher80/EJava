@@ -18,7 +18,8 @@ public class ForumActivity extends AbstractActivity implements ForumViewInterfac
     private String name;
     private int forumId;
     private ForumPlace place;
-    private Composite activityView;
+    private ForumView activityView;
+    private int pageNum = 1;
     
     public ForumActivity(ForumPlace place, ClientFactory clientFactory) {
     	//place.toke
@@ -89,6 +90,14 @@ public class ForumActivity extends AbstractActivity implements ForumViewInterfac
 	public ClientFactory getClientFactory() {
 		// TODO Auto-generated method stub
 		return clientFactory;
+	}
+
+	@Override
+	public void loadMore() {
+		// TODO Auto-generated method stub
+		 this.activityView.populate();
+		 pageNum++;
+		 //clientFactory.getPlaceController().goTo(new ForumPlace(name + "/"+ pageNum));
 	}
 
 	

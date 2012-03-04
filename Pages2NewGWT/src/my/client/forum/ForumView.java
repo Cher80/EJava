@@ -9,15 +9,19 @@ import my.client.theme.ThemeActivity;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.ScrollEvent;
+import com.google.gwt.event.dom.client.ScrollHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ScrollListener;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 
-public class ForumView extends Composite implements ForumViewInterface, HavePresenter{
+public class ForumView extends Composite implements ForumViewInterface, HavePresenter, ScrollHandler {
 	
 	private ScrollPanel panel = new ScrollPanel();
 	private Presenter presenter;
@@ -83,6 +87,9 @@ public class ForumView extends Composite implements ForumViewInterface, HavePres
 			}
 		});
 		
+		//HandlerRegistration addScrollHandler = ScrollPanel.addScrollHandler(null);
+		this.panel.addScrollHandler(this);
+		
 		initWidget(panel);
 	}
     
@@ -130,6 +137,19 @@ public class ForumView extends Composite implements ForumViewInterface, HavePres
 	public Activity getPresenter() {
 		// TODO Auto-generated method stub
 		return (Activity) this.presenter;
+	}
+
+
+	@Override
+	public void onScroll(ScrollEvent event) {
+		// TODO Auto-generated method stub
+		//System.out.println("scroll" + panel.getMaximumHorizontalScrollPosition() + panel.getHorizontalScrollPosition());
+		System.out.println(panel.getVerticalScrollPosition() + " xxxx " + panel.getMaximumVerticalScrollPosition());
+		int maxScroll = panel.getMaximumVerticalScrollPosition();
+		int curScrol = panel.getVerticalScrollPosition();
+		if ((maxScroll - curScrol) <150 ) {
+			this.presenter.loadMore();
+		}
 	}
 
 
