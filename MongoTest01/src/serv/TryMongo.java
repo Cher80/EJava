@@ -37,7 +37,7 @@ public class TryMongo {
 		m = new Mongo();
 		
 
-		db = m.getDB( "test" );
+		db = m.getDB( "leforum" );
 		
 		/*
 		Set<String> colls = db.getCollectionNames();
@@ -78,17 +78,247 @@ public class TryMongo {
 
 		//doUpdateCommentsDocument();
 		//doPopulateCommentsAsDocument();
-		//createTestColl("testColl");
-		//clearTestColl("testColl");
+		//createTestColl("forums");
+		//clearTestColl("forums");
 		//doUpdateComments();
 		//doPopulateComments();
-		doUpdateInc();
+		//doUpdateInc();
 		//getFromArray();
 		//doUpdateIncArray();
 		//doFindSort();
+		
+		//New
+		//doPopulateForums();
+		//getAggregated_cid();
+		doPopulateCommentsFlat();
+		//doFindSortBigColl();
 	}
 	
+///////////////Comments find/////////////
+	public static void doFindSortBigColl() {
+		
+		DBCollection coll = db.getCollection("testColl");
+		
+		Date myDate1 = new Date();
+		Timestamp timeStampDate1 = new Timestamp(myDate1.getTime());
+		System.out.println(timeStampDate1);
+		
+		
+		//List obj;
+		
+		
+			
+			
+			BasicDBObject query = new BasicDBObject();
+			query.append("cid", 245);
+			//queryy.append("comments.cid", 232);
+			
+			
+			DBCursor cur = coll.find(query).sort(new BasicDBObject("c_thread",1)).skip(420).limit(20);
+			List res = cur.toArray();
+			//System.out.println(cur.toArray());
+			
+			/*
+			while(cur.hasNext()) {
+	            System.out.println(cur.next());
+	        }*/
+	
+		
+		Date myDate2 = new Date();
+		Timestamp timeStampDate2 = new Timestamp(myDate2.getTime());
+		System.out.println(timeStampDate2);
+		System.out.println(timeStampDate2.getTime()-timeStampDate1.getTime());
+	}
 
+	
+	
+	
+	
+	
+	/////////////////Comments Collection Populate//////////////
+	public static void doPopulateCommentsFlat() {
+
+		DBCollection coll = db.getCollection("testColl");
+
+		Date myDate1 = new Date();
+		Timestamp timeStampDate1 = new Timestamp(myDate1.getTime());
+		System.out.println(timeStampDate1);
+		BasicDBObject query = new BasicDBObject();
+
+		Random randomGenerator = new Random();
+
+		for (int i=1000;i<2000;i++) {
+
+			for (int s=1;s<1000;s++) {
+				int randomInt = randomGenerator.nextInt(100);
+
+				BasicDBObject comment = new BasicDBObject();
+				comment.put("cid", i);
+				comment.put("c_name", "Comment name " + randomInt);
+				comment.put("c_thread", randomInt + "_" + s);
+				comment.put("text", "Comment text" + randomInt + "_" + s);
+
+				coll.insert(comment);
+			}
+		}
+		Date myDate2 = new Date();
+		Timestamp timeStampDate2 = new Timestamp(myDate2.getTime());
+		System.out.println(timeStampDate2);
+		System.out.println(timeStampDate2.getTime()-timeStampDate1.getTime());
+
+
+		}
+
+	
+	
+	
+	
+///////////////////  Aggregate  ///////////////////////////////////
+
+	
+	public static void getAggregated_cid() {
+		
+		DBCollection coll = db.getCollection("testColl");
+		
+		Date myDate1 = new Date();
+		Timestamp timeStampDate1 = new Timestamp(myDate1.getTime());
+		System.out.println(timeStampDate1);
+		
+			
+	//	> db.forums.aggregate({$match:{"fid":2}},{$project:{"comments":1}},{$unwind:"$comments"},{$sort:{"comments.c_thread":1}}).explain()
+		
+		BasicDBObject cmdBody = new BasicDBObject("aggregate", "forums");
+		ArrayList<BasicDBObject> pipeline = new	ArrayList<BasicDBObject>();
+
+		/*
+		BasicDBObject projectParam = new BasicDBObject("name", 1);
+		        projectParam.put("state", 1);
+		        pipeline.add(new BasicDBObject("$project", projectParam));
+		      }*/
+
+		 pipeline.add(new BasicDBObject("$match", new BasicDBObject("fid", 1210)  ));
+		 pipeline.add(new BasicDBObject("$project", new BasicDBObject("comments", 1)  ));
+		 pipeline.add(new BasicDBObject("$unwind", "$comments"  ));
+		 pipeline.add(new BasicDBObject("$sort", new BasicDBObject("comments.c_thread", 1)  ));
+		 pipeline.add(new BasicDBObject("$skip", 420));
+		 pipeline.add(new BasicDBObject("$limit", 500));
+	 
+		 cmdBody.put("pipeline", pipeline);
+		 BasicDBObject res = (BasicDBObject) db.command(cmdBody);
+		 //System.out.println("result: " + res); 
+		
+		
+		Date myDate2 = new Date();
+		Timestamp timeStampDate2 = new Timestamp(myDate2.getTime());
+		System.out.println(timeStampDate2);
+		System.out.println(timeStampDate2.getTime()-timeStampDate1.getTime());
+	}
+
+	
+	
+	
+	
+public static void doPopulateForums() {
+
+DBCollection coll = db.getCollection("forums");
+
+Date myDate1 = new Date();
+Timestamp timeStampDate1 = new Timestamp(myDate1.getTime());
+System.out.println(timeStampDate1);
+BasicDBObject query = new BasicDBObject();
+
+
+for (int s=1001;s<2000;s++) {
+List obj;
+BasicDBObject fid = new BasicDBObject();
+
+fid.put("fid", s);
+fid.put("rating", 0);
+
+//BasicDBObject groups = new BasicDBObject();
+ArrayList<BasicDBObject> groups = new ArrayList<BasicDBObject>();
+
+
+for (int i=1;i<10;i++) {
+
+	BasicDBObject group = new BasicDBObject();
+	group.put("gid", i);
+	group.put("name", "Group name " + i);
+
+//ArrayList x = new ArrayList();
+	ArrayList<BasicDBObject> fids = new ArrayList<BasicDBObject>();
+
+	
+	BasicDBObject group1 = new BasicDBObject();
+	group1.append("fid", i*10 + 1);
+	group1.append("name", "Sub forum number one" +(i*10 + 1));
+	group1.append("rating", 0);
+
+	BasicDBObject group2 = new BasicDBObject();
+	group2.append("fid", i*10 + 2);
+	group2.append("name", "Sub forum number two" +(i*10 + 2));
+	group2.append("rating", 0);
+
+	BasicDBObject group3 = new BasicDBObject();
+	group3.append("fid", i*10 + 3);
+	group3.append("name", "Sub forum number three" +(i*10 + 3));
+	group3.append("rating", 0);
+
+
+	fids.add(group1);
+	fids.add(group2);
+	fids.add(group3);
+
+	group.put("fids", fids);
+	groups.add(group);
+//page.comments("page_id", i);
+
+} 
+
+fid.put("groups", groups);
+
+////////////////Comments//////////////////////////////////
+ArrayList<BasicDBObject> comments = new ArrayList<BasicDBObject>();
+
+Random randomGenerator = new Random();
+
+  
+
+for (int i=1;i<1000;i++) {
+
+	int randomInt = randomGenerator.nextInt(100);
+	BasicDBObject comment = new BasicDBObject();
+	comment.put("cid", randomInt);
+	comment.put("c_name", "Comment name " + randomInt);
+	comment.put("c_thread", randomInt + "_" + i);
+	comment.put("text", "Comment text" + randomInt + "_" + i);
+
+
+	comments.add(comment);
+//page.comments("page_id", i);
+
+} 
+
+fid.put("groups", groups);
+fid.put("comments", comments);
+
+///////////////////////////////////////////
+
+
+coll.insert(fid);
+
+}
+Date myDate2 = new Date();
+Timestamp timeStampDate2 = new Timestamp(myDate2.getTime());
+System.out.println(timeStampDate2);
+System.out.println(timeStampDate2.getTime()-timeStampDate1.getTime());
+
+
+}
+
+	
+	
+	
 	public static void createTestColl(String collName) {
 		//db.createCollection("xcx");
 		db.createCollection(collName, BasicDBObjectBuilder.start().add("capped", false).add("size", 0).add("max", 0).get());
@@ -319,7 +549,7 @@ public class TryMongo {
 		
 		for (int i=1;i<100000;i++) {
 			BasicDBObject page = new BasicDBObject();
-			page.put("page_id", i);
+			page.put("cid", i);
 			page.put("rating", 0);
 			//ArrayList x = new ArrayList();
 			ArrayList comments = new ArrayList();

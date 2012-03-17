@@ -16,6 +16,19 @@
     <url-pattern>/extranewgwt/greet</url-pattern>
   </servlet-mapping>
   
+  
+   <!-- Servlets -->
+  <servlet>
+    <servlet-name>getForumServiceImpl</servlet-name>
+    <servlet-class>my.server.GetForumServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>getForumServiceImpl</servlet-name>
+    <url-pattern>/extranewgwt/getForum</url-pattern>
+  </servlet-mapping>
+  
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>ExtraNewGWT.html</welcome-file>

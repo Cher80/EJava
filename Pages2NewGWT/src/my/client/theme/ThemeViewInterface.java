@@ -16,6 +16,7 @@ public interface ThemeViewInterface extends IsWidget {
 		//public void goToCompos1New();
         //void goToCompos1(Place place);
         //void setThemeNa,e();
+		void makeRPC();
     }
 
 }
