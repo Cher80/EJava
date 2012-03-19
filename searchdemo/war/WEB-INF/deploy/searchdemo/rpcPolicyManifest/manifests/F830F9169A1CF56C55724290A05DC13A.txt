@@ -1,0 +1,2 @@
+serviceClass: my.client.SearchService
+path: FDBC82A073E0D6DA78123095BB7809BC.gwt.rpc
